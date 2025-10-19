@@ -39,7 +39,7 @@ export const LoginForm = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400 text-zinc-800"
               required
             />
           </div>
@@ -52,7 +52,7 @@ export const LoginForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400 text-zinc-800"
               required
             />
           </div>
