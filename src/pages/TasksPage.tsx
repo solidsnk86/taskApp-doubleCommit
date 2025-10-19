@@ -124,7 +124,25 @@ export const TasksPage = () => {
   return (
     <div className="mt-24 p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold flex items-center gap-2.5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-list-checks-icon lucide-list-checks"
+          >
+            <path d="M13 5h8" />
+            <path d="M13 12h8" />
+            <path d="M13 19h8" />
+            <path d="m3 17 2 2 4-4" />
+            <path d="m3 7 2 2 4-4" />
+          </svg>
           Lista de Tareas ({data?.tareas?.length})
         </h1>
         <button
