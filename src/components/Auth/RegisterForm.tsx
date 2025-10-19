@@ -14,7 +14,7 @@ export const RegisterForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true)
-    await fetch("http://localhost:5000/api/signup", {
+    await fetch("https://e-retro-back.vercel.app/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const checkSession = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch("http://localhost:5000/api/profile", {
+        const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
           credentials: "include",
         });
         if (res.status === 404) throw new Error("Sin sesión");
@@ -48,7 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signin = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/signin", {
+      const res = await fetch("https://e-retro-back.vercel.app/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signout = async () => {
     setIsLoading(true);
     try {
-      await fetch("http://localhost:5000/api/signout", {
+      await fetch("https://e-retro-back.vercel.app/api/logout", {
         method: "GET",
         credentials: "include",
       });
@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/delete/user/${id}`, {
+      const res = await fetch(`https://e-retro-back.vercel.app/api/delete/user/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -104,7 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const refreshUser = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/profile", {
+      const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
         credentials: "include",
       });
       if (!res.ok) throw new Error("Error al obtener usuario actualizado");

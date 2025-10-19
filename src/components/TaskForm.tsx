@@ -22,7 +22,7 @@ export const TaskForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/tarea", {
+      const res = await fetch("https://e-retro-back.vercel.app/api/task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -90,7 +90,7 @@ export const UpdateForm = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/update/user", {
+      const res = await fetch("https://e-retro-back.vercel.app/api/update/user", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
