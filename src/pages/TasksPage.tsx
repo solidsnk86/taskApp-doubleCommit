@@ -3,7 +3,7 @@ import { Loader } from "../components/Layout/Loader";
 import { TaskCard } from "../components/TaskCard";
 import { showDialog } from "../utils/dialog";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/userProvider"; // 👈 importante
+import { useAuth } from "../contexts/userProvider";
 import type { PartialTasksProps } from "../definitions";
 
 export const TasksPage = () => {
@@ -15,7 +15,7 @@ export const TasksPage = () => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (authLoading) return; // esperar a que termine la carga del usuario
+    if (authLoading) return;
     if (!auth) {
       navigate("/login");
       return;
