@@ -90,7 +90,7 @@ export const Home = () => {
 
         <div className="mt-8">
           <button
-            onClick={() => navigate("/tareas")}
+            onClick={() => navigate("/tasks")}
             className="welcome-btn px-6 py-3 bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 transition transform hover:scale-105 hover:shadow-blue-600/50 shadow-2xl"
           >
             Comenzar ahora

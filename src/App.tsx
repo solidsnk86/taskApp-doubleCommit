@@ -26,7 +26,7 @@ export default function App() {
         }
       />
       <Route
-        path="/tareas"
+        path="/tasks"
         element={
           <ProtectedRoute>
             <TasksPage />

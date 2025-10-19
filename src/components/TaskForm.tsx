@@ -32,7 +32,7 @@ export const TaskForm = () => {
       if (!res.ok) throw new Error("Error al crear la tarea");
 
       setLoading(false);
-      navigate("/tareas");
+      navigate("/tasks");
     } catch (err) {
       setLoading(false);
       console.error("Error al guardar la tarea:", err);
