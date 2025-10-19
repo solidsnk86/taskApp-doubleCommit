@@ -187,7 +187,7 @@ export const ProfileUser = () => {
 
           {/* Mis tareas */}
           <button
-            onClick={() => navigate("/tareas")}
+            onClick={() => navigate("/tasks")}
             className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 text-white shadow-md hover:bg-emerald-600 hover:shadow-lg transition-transform"
           >
             <svg
