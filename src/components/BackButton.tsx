@@ -5,7 +5,7 @@ export const BackButton = () => {
   return (
     <div
       onClick={() => navigate("/")}
-      className="absolute top-20 left-4 flex px-6 py-3 bg-[#fff] dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800/50 gap-3 items-center cursor-pointer group hover:brightness-125"
+      className="absolute top-20 left-4 flex px-6 py-3 bg-[#fff] dark:bg-zinc-900/50 text-zinc-800 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 gap-3 items-center cursor-pointer group hover:brightness-125"
       title="Volver al inicio"
     >
       <svg
@@ -23,7 +23,7 @@ export const BackButton = () => {
         <path d="M6 8L2 12L6 16" />
         <path d="M2 12H22" />
       </svg>
-      <span className="text-zinc-100">Volver</span>
+      <span className="">Volver</span>
     </div>
   );
 };

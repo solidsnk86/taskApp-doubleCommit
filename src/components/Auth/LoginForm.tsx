@@ -25,13 +25,13 @@ export const LoginForm = () => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <BackButton />
-      <div className="bg-white bg-opacity-30 backdrop-blur-md border-zinc-300 shadow-lg p-8 text-zinc-800">
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 backdrop-blur-md border-zinc-200 dark:border-zinc-700 shadow-lg p-8 text-zinc-800">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Iniciar Sesión
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700" htmlFor="email">
+            <label className="block text-gray-700 dark:text-zinc-400" htmlFor="email">
               Correo Electrónico
             </label>
             <input
@@ -44,7 +44,7 @@ export const LoginForm = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700" htmlFor="password">
+            <label className="block text-gray-700 dark:text-zinc-400" htmlFor="password">
               Contraseña
             </label>
             <input

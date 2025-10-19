@@ -3,12 +3,18 @@
 :root {
   color-scheme: dark;
   --primary-text-color: #222;
+  --primary-bg-color: #f5f5f5;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-text-color: #fff;
+    --primary-bg-color: #181818;
   }
+}
+
+body {
+  background: var(--primary-bg-color);
 }
 
 dialog {

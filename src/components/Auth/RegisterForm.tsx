@@ -9,11 +9,12 @@ export const RegisterForm = () => {
   const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     await fetch("https://e-retro-back.vercel.app/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -22,8 +23,8 @@ export const RegisterForm = () => {
     })
       .then((res) => res.json())
       .then((data: PartialUserProps) => {
-        setIsLoading(false)
-        navigate("/profile")
+        setIsLoading(false);
+        navigate("/profile");
         showDialog({
           content: (
             <div className="p-4">
@@ -33,10 +34,15 @@ export const RegisterForm = () => {
             </div>
           ),
         });
-      }).catch((err) => {
-        setIsLoading(false)
-        showDialog({ content: <div>{err.message}</div> })
       })
+      .catch((err) => {
+        setIsLoading(false);
+        showDialog({ content: <div>{err.message}</div> });
+      });
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword((value) => !value);
   };
 
   return (
@@ -44,11 +50,13 @@ export const RegisterForm = () => {
       <BackButton />
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 text-zinc-800 shadow-md w-96"
+        className="bg-white dark:bg-zinc-900/50 p-6 text-zinc-800 dark:text-zinc-200 shadow-md w-96"
       >
-        <h2 className="text-lg font-bold mb-4">Registro</h2>
+        <h2 className="text-lg font-bold mb-4 text-zinc-800 dark:text-white">
+          Registro
+        </h2>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-zinc-400">
             Nombre de usuario
           </label>
           <input
@@ -60,7 +68,7 @@ export const RegisterForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-zinc-400">
             Correo electrónico
           </label>
           <input
@@ -71,17 +79,57 @@ export const RegisterForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className="mb-4 relative">
+          <label className="block text-sm font-medium text-gray-700 dark:text-zinc-400">
             Contraseña
           </label>
           <input
-            type="password"
+            type={showPassword ? "password" : "text"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="mt-1 block w-full border border-gray-300  p-2"
             required
           />
+          {showPassword ? (
+            <span onClick={handleShowPassword} className="absolute top-8 right-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-eye-closed-icon lucide-eye-closed"
+              >
+                <path d="m15 18-.722-3.25" />
+                <path d="M2 8a10.645 10.645 0 0 0 20 0" />
+                <path d="m20 15-1.726-2.05" />
+                <path d="m4 15 1.726-2.05" />
+                <path d="m9 18 .722-3.25" />
+              </svg>
+            </span>
+          ) : (
+            <span onClick={handleShowPassword} className="absolute top-8 right-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-eye-icon lucide-eye"
+              >
+                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                <circle cx={12} cy={12} r={3} />
+              </svg>
+            </span>
+          )}
         </div>
         <button
           type="submit"
