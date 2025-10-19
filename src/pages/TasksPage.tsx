@@ -24,7 +24,7 @@ export const TasksPage = () => {
     const fetchTasks = async () => {
       try {
         setLoading(true);
-        const res = await fetch("http://localhost:5000/api/tareas", {
+        const res = await fetch("https://e-retro-back.vercel.app/api/tasks", {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -47,7 +47,7 @@ export const TasksPage = () => {
   const deleteTask = async (id: number) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/eliminar/tarea/${id}`,
+        `https://e-retro-back.vercel.app/api/delete/task/${id}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
