@@ -124,14 +124,14 @@ export const TasksPage = () => {
   return (
     <div className="mt-24 p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold flex items-center gap-2.5">
+        <h1 className="text-2xl font-bold flex items-center gap-2.5 text-zinc-800 dark:text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={24}
-            height={24}
+            width={28}
+            height={28}
             viewBox="0 0 24 24"
             fill="none"
-            stroke="currentColor"
+            stroke="#4f39f6"
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -3,13 +3,15 @@ import { showDialog } from "../../utils/dialog";
 import { BackButton } from "../BackButton";
 import { useNavigate } from "react-router-dom";
 import type { PartialUserProps } from "../../definitions";
+import { useAuth } from "../../contexts/userProvider";
 
 export const RegisterForm = () => {
+  const { refreshUser } = useAuth()
   const navigate = useNavigate();
   const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -22,15 +24,16 @@ export const RegisterForm = () => {
       body: JSON.stringify({ name, email, password }),
     })
       .then((res) => res.json())
-      .then((data: PartialUserProps) => {
+      .then(async(data: PartialUserProps) => {
         setIsLoading(false);
+        await refreshUser()
         navigate("/profile");
         showDialog({
           content: (
             <div className="p-4">
               <h3 className="text-lg font-semibold">¡Registro exitoso!</h3>
-              <p className="mt-2">Usuario: {data?.user?.user_name}</p>
-              <p className="mt-1">Correo: {data?.user?.user_email}</p>
+              <p className="mt-2 text-rose-400">Usuario: {data?.user?.user_name}</p>
+              <p className="mt-1 text-rose-400">Correo: {data?.user?.user_email}</p>
             </div>
           ),
         });
@@ -50,7 +53,7 @@ export const RegisterForm = () => {
       <BackButton />
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-zinc-900/50 p-6 text-zinc-800 dark:text-zinc-200 shadow-md w-96"
+        className="bg-white dark:bg-zinc-900/50 p-8 text-zinc-800 dark:text-zinc-200 shadow-md w-96 border border-zinc-200 dark:border-zinc-800"
       >
         <h2 className="text-lg font-bold mb-4 text-zinc-800 dark:text-white">
           Registro
@@ -135,7 +138,7 @@ export const RegisterForm = () => {
           type="submit"
           className="w-full bg-zinc-800 text-white p-2 hover:bg-zinc-700"
         >
-          {isLoading ? "Cargando..." : "Registrarse"}
+          {isLoading ? "Procesando..." : "Registrarse"}
         </button>
       </form>
     </div>

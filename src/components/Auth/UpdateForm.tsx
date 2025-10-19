@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { showDialog } from "../../utils/dialog";
 import { Loader } from "../Layout/Loader";
 import { useAuth } from "../../contexts/userProvider";
+import { convertToBase64 } from "../../utils/convertToBase64";
 
 export const UpdateForm = () => {
   const navigate = useNavigate();
@@ -21,16 +22,6 @@ export const UpdateForm = () => {
     navigate("/login");
     return <Loader />;
   }
-
-  // Convertir archivo a base64
-  const convertToBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
-  };
 
   // Manejar la selección de archivo
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {

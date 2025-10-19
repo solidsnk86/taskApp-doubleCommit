@@ -1,20 +1,12 @@
 import { formatDateAndTime } from "../../utils/formatDate";
 import { Loader } from "../Layout/Loader";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/userProvider";
 import { showDialog } from "../../utils/dialog";
 
 export const ProfileUser = () => {
   const navigate = useNavigate();
-  const { auth, isLoading, deleteUser, refreshUser } = useAuth();
-
-  useEffect(() => {
-    const fetchNewData = async () => {
-      await refreshUser();
-    };
-    fetchNewData();
-  }, [refreshUser]);
+  const { auth, isLoading, deleteUser } = useAuth();
 
   if (isLoading) return <Loader />;
 
@@ -132,8 +124,7 @@ export const ProfileUser = () => {
                 <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
                 <path d="M21 3v5h-5" />
               </svg>
-              Cuenta actualizada el{" "}
-              {formatDateAndTime(auth?.user?.updated_at as string)}
+              {auth?.user?.user_update ? "Cuenta actualizada el " + (formatDateAndTime(auth?.user?.updated_at as string)) : "No se ha actualizado la cuenta."}
             </p>
           </div>
         </div>
@@ -142,7 +133,7 @@ export const ProfileUser = () => {
           {/* Editar perfil */}
           <button
             onClick={() => navigate("/profile/edit")}
-            className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white shadow-md hover:bg-indigo-700 hover:shadow-lg transition-transform"
+            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white hover:shadow-lg transition-transform hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +141,7 @@ export const ProfileUser = () => {
               height="20"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="#615fff"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -164,7 +155,7 @@ export const ProfileUser = () => {
           {/* Eliminar cuenta */}
           <button
             onClick={confirmDeleteUser}
-            className="flex items-center gap-2 px-5 py-2.5 bg-rose-500 text-white shadow-md hover:bg-rose-600 hover:shadow-lg transition-transform"
+            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white hover:shadow-lg transition-transform hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +163,7 @@ export const ProfileUser = () => {
               height="20"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="tomato"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -188,7 +179,7 @@ export const ProfileUser = () => {
           {/* Mis tareas */}
           <button
             onClick={() => navigate("/tasks")}
-            className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 text-white shadow-md hover:bg-emerald-600 hover:shadow-lg transition-transform"
+            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +187,7 @@ export const ProfileUser = () => {
               height="20"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="lightgreen"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"

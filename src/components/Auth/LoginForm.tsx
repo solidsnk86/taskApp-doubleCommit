@@ -6,10 +6,10 @@ import { BackButton } from "../BackButton";
 export const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(true);
   const { signin, auth, error, isLoading } = useAuth();
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -122,7 +122,7 @@ export const LoginForm = () => {
                 : "bg-zinc-800 text-white hover:bg-zinc-700"
             }`}
           >
-            {isLoading ? "Cargando..." : "Iniciar Sesión"}
+            {isLoading ? "Ingresando..." : "Iniciar Sesión"}
           </button>
         </form>
 
@@ -133,7 +133,7 @@ export const LoginForm = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-600">
             ¿No tienes una cuenta?{" "}
-            <span onClick={() => navigate("/register")} className="text-blue-500 hover:underline">
+            <span onClick={() => navigate("/register")} className="text-blue-500 hover:underline cursor-pointer">
               Regístrate aquí
             </span>
           </p>

@@ -18,6 +18,7 @@ body {
 }
 
 dialog {
+  background: var(--primary-bg-color);
   max-width: 672px;
   display: flex;
   justify-content: center;
