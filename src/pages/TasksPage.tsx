@@ -122,7 +122,7 @@ export const TasksPage = () => {
 
   // Vista principal
   return (
-    <div className="mt-24 p-4 max-w-3xl">
+    <div className="mt-24 p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold flex items-center gap-2.5">
           <svg
