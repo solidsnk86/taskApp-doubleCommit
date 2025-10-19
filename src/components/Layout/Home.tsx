@@ -97,7 +97,8 @@ export const Home = () => {
           </button>
         </div>
       </div>
-      <div className="flex px-4 py-2 mt-10">
+      <div className="flex flex-col px-4 py-2 mt-10">
+        <h4>Usuarios que ya usan ésta app!</h4>
         <UserAvatarsGroup users={users} size={45} />
       </div>
     </div>

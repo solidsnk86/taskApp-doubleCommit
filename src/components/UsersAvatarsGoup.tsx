@@ -10,7 +10,7 @@ interface UserAvatarsGroupProps {
     const overlap = size / 2.5;
   
     return (
-      <div className="flex items-center">
+      <div className="flex items-center justify-center mt-3">
         {users.map((user, index) => (
           <a
             href={user.github}
