@@ -7,8 +7,8 @@ export const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const navigate = useNavigate();
   const { signin, auth, error, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -133,9 +133,9 @@ export const LoginForm = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-600">
             ¿No tienes una cuenta?{" "}
-            <a href="/register" className="text-blue-500 hover:underline">
+            <span onClick={() => navigate("/register")} className="text-blue-500 hover:underline">
               Regístrate aquí
-            </a>
+            </span>
           </p>
         </div>
       </div>
