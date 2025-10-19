@@ -18,7 +18,7 @@ export const BackButton = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="lucide lucide-move-left-icon lucide-move-left strok group-hover:-translate-x-1 transition-transform"
+        className="lucide lucide-move-left-icon lucide-move-left strok group-hover:-translate-x-1 transition-transform text-zinc-800 dark:text-zinc-400"
       >
         <path d="M6 8L2 12L6 16" />
         <path d="M2 12H22" />
