@@ -141,7 +141,7 @@ export const ProfileUser = () => {
            {/* Mis tareas */}
            <button
             onClick={() => navigate("/tasks")}
-            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ export const ProfileUser = () => {
           {/* Editar perfil */}
           <button
             onClick={() => navigate("/profile/edit")}
-            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white hover:shadow-lg transition-transform hover:scale-105"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@ export const ProfileUser = () => {
           {/* Eliminar cuenta */}
           <button
             onClick={confirmDeleteUser}
-            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white hover:shadow-lg transition-transform hover:scale-105"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -206,7 +206,7 @@ export const ProfileUser = () => {
             Eliminar Cuenta
           </button>
 
-          <SignOutButton signout={signout} isLoading={isLoading} mediaQuerys="flex md:hidden" />
+          <SignOutButton signout={signout} isLoading={isLoading} mediaQuerys="flex md:hidden w-full py-2.5" />
         </aside>
       </div>
     </section>
