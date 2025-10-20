@@ -30,7 +30,7 @@ export const LoginForm = () => {
   return (
     <div className="flex items-center justify-center min-h-screen" style={{ viewTransitionName: "page" }}>
       <BackButton />
-      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 backdrop-blur-md border-zinc-200 dark:border-zinc-700 shadow-lg p-8">
+      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 backdrop-blur-md border-blue-600 dark:border-zinc-700 p-8">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Iniciar Sesión
         </h2>
@@ -116,7 +116,7 @@ export const LoginForm = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-2 transition duration-200 ${
+            className={`w-full py-2 transition duration-200 select-none ${
               isLoading
                 ? "bg-zinc-400 cursor-not-allowed"
                 : "bg-zinc-800 text-white hover:bg-zinc-700"

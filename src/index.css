@@ -3,7 +3,8 @@
 :root {
   color-scheme: dark;
   --primary-text-color: #222;
-  --primary-bg-color: #f5f5f5;
+  --primary-bg-color: linear-gradient(to bottom, #f3f6fa, #e2e9f5);
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
 
 body {
   background: var(--primary-bg-color);
+  height: 100dvh;
 }
 
 dialog {

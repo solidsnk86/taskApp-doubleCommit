@@ -105,15 +105,16 @@ export const TasksPage = () => {
   if (data?.tareas?.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="text-center">
+        <div className="flex flex-col text-center">
           <h1 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-200">
             No hay tareas creadas aún 🤔
           </h1>
+          <small className="text-zinc-800">Ninguna tarea a completar</small>
           <button
             onClick={() => navigate("/create-task")}
             className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition"
           >
-            Crea tu primer tarea!
+            Crea tu primer meta!
           </button>
         </div>
       </div>

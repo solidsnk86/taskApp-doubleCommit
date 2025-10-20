@@ -23,7 +23,7 @@ export const BackButton = ({ route }: { route?: string }) => {
         <path d="M6 8L2 12L6 16" />
         <path d="M2 12H22" />
       </svg>
-      <span className="">Volver</span>
+      <span className="select-none">Volver</span>
     </div>
   );
 };
