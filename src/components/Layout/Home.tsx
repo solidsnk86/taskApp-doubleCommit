@@ -76,7 +76,7 @@ export const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-28 px-4">
       <div className="text-center max-w-2xl">
-        <p className="welcome-p w-fit mx-auto text-zinc-100 italic text-xs md:text-sm px-2 bg-gradient-to-br from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] border border-zinc-400/50 rounded-full">
+        <p className="welcome-p w-fit mx-auto text-zinc-100 italic text-xs md:text-sm px-2 mb-4 bg-gradient-to-br from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] border border-zinc-400/50 rounded-full">
           “Una tarea a la vez, un paso más cerca del éxito.”
         </p>
         <h1 className="welcome-h1 text-4xl md:text-5xl xl:text-[3.3rem] font-extrabold bg-clip-text bg-gradient-to-t from-blue-400 to-blue-600 text-transparent">
