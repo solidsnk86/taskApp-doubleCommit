@@ -28,6 +28,10 @@ dialog {
   color: var(--primary-text-color);
 }
 
+dialog::backdrop {
+  backdrop-filter: blur(3px);
+}
+
 @keyframes slideIn {
   from {
     transform: translateY(-500%);

@@ -7,6 +7,7 @@ import { CreateTaskPage } from "./pages/CreateTaskPage";
 import { UpdatePage } from "./pages/UpdatePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { EditPassForm } from "./components/Auth/EditPassForm";
 
 export default function App() {
   return (
@@ -54,6 +55,14 @@ export default function App() {
         element={
           <ProtectedRoute>
             <UpdatePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile/edit/password"
+        element={
+          <ProtectedRoute>
+            <EditPassForm />
           </ProtectedRoute>
         }
       />

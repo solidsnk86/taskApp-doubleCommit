@@ -81,17 +81,19 @@ export const UpdateForm = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch("https://e-retro-back.vercel.app/api/update/user", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          name: userName,
-          email: userEmail,
-          avatar: userAvatar,
-          password: "admin1234",
-        }),
-      });
+      const res = await fetch(
+        "https://e-retro-back.vercel.app/api/update/user",
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            name: userName,
+            email: userEmail,
+            avatar: userAvatar,
+          }),
+        }
+      );
 
       const result = await res.json();
 
@@ -104,8 +106,8 @@ export const UpdateForm = () => {
             </div>
           ),
         });
-        await refreshUser()
-        setTimeout(() => navigate("/profile"), 800)
+        await refreshUser();
+        setTimeout(() => navigate("/profile"), 800);
       } else {
         showDialog({
           content: (
@@ -237,11 +239,32 @@ export const UpdateForm = () => {
             />
           </div>
 
+          <div 
+          onClick={() => navigate("/profile/edit/password")}
+          className="flex items-center gap-2 cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-lock-icon lucide-lock"
+            >
+              <rect width={18} height={11} x={3} y={11} rx={2} ry={2} />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+
+            <p>Actualizar contraseña</p>
+          </div>
           {/* Botones */}
           <aside className="flex justify-center gap-3 mt-4">
             <button
               type="submit"
-              className="flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white shadow-sm hover:bg-green-700 transition"
+              className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-green-700 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
