@@ -97,18 +97,18 @@ dialog::backdrop {
 }
 
 ::view-transition-old(page) {
-  animation: blur-fade-out 0.5s ease forwards;
+  animation: blur-fade-out 0.8s ease forwards;
 }
 
 ::view-transition-new(page) {
-  animation: blur-fade-in 0.5s ease forwards;
+  animation: blur-fade-in 0.8s ease forwards;
 }
 
 @keyframes blur-fade-out {
   from {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(-50%);
+    transform: translateY(50%) scale(0.5);
   }
   to {
     opacity: 0;
