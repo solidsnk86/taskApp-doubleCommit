@@ -163,7 +163,7 @@ export const TasksPage = () => {
             <path d="M5 12h14" />
             <path d="M12 5v14" />
           </svg>
-          Nueva Tarea
+          <span className="hidden md:flex">Nueva Tarea</span>
         </button>
       </div>
 
