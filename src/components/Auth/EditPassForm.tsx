@@ -1,25 +1,49 @@
-import { useState } from "react"
-import { useAuth } from "../../contexts/userProvider"
-import { BackButton } from "../BackButton"
+import { useState, type FormEvent } from "react";
+import { useAuth } from "../../contexts/userProvider";
+import { BackButton } from "../BackButton";
+import { showDialog } from "../../utils/dialog";
 
 export const EditPassForm = () => {
-    const { error, isLoading } = useAuth()
-    const [password, setPassword] = useState<string>("")
-    const [newPassword, setNewPassword] = useState<string>("")
-    const [showPassword, setShowPassword] = useState(true)
+  const { error, isLoading } = useAuth();
+  const [password, setPassword] = useState<string>("");
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(true);
 
-    const handleSubmit = () => {}
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    const response = await fetch(
+      "https://e-retro-back.vercel.app/api/update/user/password",
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      }
+    );
 
-    const handleShowPassword = () => setShowPassword((value) => !value)
-    return (
-        <div className="flex items-center justify-center min-h-screen">
-      <BackButton />
+    if (!response.ok) throw new Error(response.statusText);
+
+    const data = await response.json();
+    showDialog({
+      content: <div className="p-5">{data.message}</div>,
+    });
+  };
+
+  const handleShowPassword = () => setShowPassword((value) => !value);
+  return (
+    <div
+      className="flex items-center justify-center min-h-screen"
+      style={{ viewTransitionName: "page" }}
+    >
+      <BackButton route="/profile/edit" />
       <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 backdrop-blur-md border-zinc-200 dark:border-zinc-700 shadow-lg p-8">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Cambio de contraseña
         </h2>
-        <form onSubmit={handleSubmit} className="text-zinc-800 dark:text-zinc-200">
-        <div className="mb-6 relative">
+        <form
+          onSubmit={handleSubmit}
+          className="text-zinc-800 dark:text-zinc-200"
+        >
+          <div className="mb-6 relative">
             <label
               className="block text-gray-700 dark:text-zinc-400"
               htmlFor="password"
@@ -81,6 +105,7 @@ export const EditPassForm = () => {
               </span>
             )}
           </div>
+
           <div className="mb-6 relative">
             <label
               className="block text-gray-700 dark:text-zinc-400"
@@ -161,5 +186,5 @@ export const EditPassForm = () => {
         )}
       </div>
     </div>
-    )
-}
+  );
+};

@@ -1,5 +1,6 @@
 import { useAuth } from "../../contexts/userProvider";
 import { Link, useNavigate } from "react-router-dom";
+import { SignOutButton } from "../Auth/SignOutButton";
 
 export const Header = () => {
   const { auth, signout, isLoading } = useAuth();
@@ -13,13 +14,14 @@ export const Header = () => {
           className="flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform duration-500"
         >
           <img src="/vite.svg" width={33} height={33} />
-          <span className="font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#57B4FF] via-[#8D70FE] to-[#BD34FE]">
+          <span className="font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] hidden md:flex">
             doubleCommit taskApp
           </span>
         </div>
+
         {/* Si hay usuario */}
         {auth && auth.user ? (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" title={auth.user.user_name}>
             <Link to={"/profile"} className="flex items-center gap-2">
               <img
                 src={
@@ -29,58 +31,12 @@ export const Header = () => {
                 alt={auth?.user?.user_name}
                 className="w-9 h-9 rounded-full object-cover border border-zinc-300 dark:border-zinc-700 hover:outline-4 outline-indigo-500/60 transition-colors duration-500"
               />
-              <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+              <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200 hidden md:flex">
                 {auth?.user?.user_name || "No disponible"}
               </span>
             </Link>
 
-            <button
-              onClick={signout}
-              className="flex items-center justify-center gap-2 w-44 px-4 py-2 text-sm border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
-            >
-              {isLoading ? (
-                <span className="animate-spin duration-1000">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-loader-icon lucide-loader"
-                  >
-                    <path d="M12 2v4" />
-                    <path d="m16.2 7.8 2.9-2.9" />
-                    <path d="M18 12h4" />
-                    <path d="m16.2 16.2 2.9 2.9" />
-                    <path d="M12 18v4" />
-                    <path d="m4.9 19.1 2.9-2.9" />
-                    <path d="M2 12h4" />
-                    <path d="m4.9 4.9 2.9 2.9" />
-                  </svg>
-                </span>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                  <polyline points="16 17 21 12 16 7" />
-                  <line x1="21" y1="12" x2="9" y2="12" />
-                </svg>
-              )}
-              {isLoading ? "Cerrando sesión" : "Cerrar sesión"}
-            </button>
+           <SignOutButton signout={signout} isLoading={isLoading} mediaQuerys="hidden"  />
           </div>
         ) : (
           <button

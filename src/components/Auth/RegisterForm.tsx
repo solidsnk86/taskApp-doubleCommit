@@ -53,7 +53,7 @@ export const RegisterForm = () => {
       <BackButton route="/login" />
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-zinc-900/50 p-8 text-zinc-800 dark:text-zinc-200 shadow-md w-96 border border-zinc-200 dark:border-zinc-800"
+        className="bg-white dark:bg-zinc-900/50 p-8 text-zinc-800 dark:text-zinc-200 shadow-md w-80 border border-zinc-200 dark:border-zinc-800"
       >
         <h2 className="text-lg font-bold mb-4 text-zinc-800 dark:text-white">
           Registro

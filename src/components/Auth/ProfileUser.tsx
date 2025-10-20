@@ -3,10 +3,11 @@ import { Loader } from "../Layout/Loader";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/userProvider";
 import { showDialog } from "../../utils/dialog";
+import { SignOutButton } from "./SignOutButton";
 
 export const ProfileUser = () => {
   const navigate = useNavigate();
-  const { auth, isLoading, deleteUser } = useAuth();
+  const { auth, isLoading, deleteUser, signout } = useAuth();
 
   if (isLoading) return <Loader />;
 
@@ -60,7 +61,10 @@ export const ProfileUser = () => {
   };
 
   return (
-    <section className="max-w-3xl flex mx-auto justify-center px-4" style={{ viewTransitionName: "page" }}>
+    <section
+      className="max-w-3xl flex mx-auto justify-center px-4"
+      style={{ viewTransitionName: "page" }}
+    >
       <div className="w-full p-8 bg-white/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800 shadow-xl mt-24 backdrop-blur">
         <h1 className="text-3xl font-bold mb-6 text-center text-zinc-900 dark:text-zinc-100 tracking-tight">
           Perfil de Usuario
@@ -124,12 +128,38 @@ export const ProfileUser = () => {
                 <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
                 <path d="M21 3v5h-5" />
               </svg>
-              {auth?.user?.user_update ? "Cuenta actualizada el " + (formatDateAndTime(auth?.user?.updated_at as string)) : "No se ha actualizado la cuenta."}
+              {auth?.user?.user_update
+                ? "Cuenta actualizada el " +
+                  formatDateAndTime(auth?.user?.updated_at as string)
+                : "No se ha actualizado la cuenta."}
             </p>
           </div>
         </div>
 
         <aside className="flex flex-wrap justify-center gap-4 mt-8">
+          
+           {/* Mis tareas */}
+           <button
+            onClick={() => navigate("/tasks")}
+            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="lightgreen"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+            Mis Tareas
+          </button>
+
           {/* Editar perfil */}
           <button
             onClick={() => navigate("/profile/edit")}
@@ -176,27 +206,7 @@ export const ProfileUser = () => {
             Eliminar Cuenta
           </button>
 
-          {/* Mis tareas */}
-          <button
-            onClick={() => navigate("/tasks")}
-            className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="lightgreen"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M9 11l3 3L22 4" />
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-            </svg>
-            Mis Tareas
-          </button>
+          <SignOutButton signout={signout} isLoading={isLoading} mediaQuerys="flex md:hidden" />
         </aside>
       </div>
     </section>

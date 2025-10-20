@@ -4,7 +4,6 @@ import { showDialog } from "../../utils/dialog";
 import { Loader } from "../Layout/Loader";
 import { useAuth } from "../../contexts/userProvider";
 import { convertToBase64 } from "../../utils/convertToBase64";
-import { BackButton } from "../BackButton";
 
 export const UpdateForm = () => {
   const navigate = useNavigate();
@@ -17,12 +16,6 @@ export const UpdateForm = () => {
   const [userAvatar, setUserAvatar] = useState(auth?.user?.user_avatar || "");
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Si no hay autenticación, redirigir al login
-  if (!auth) {
-    navigate("/login");
-    return <Loader />;
-  }
 
   // Manejar la selección de archivo
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -135,7 +128,6 @@ export const UpdateForm = () => {
 
   return (
     <section className="max-w-2xl flex mx-auto justify-center" style={{ viewTransitionName: "page" }}>
-      <BackButton route="/profile" />
       <div className="w-full p-6 bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 shadow-lg my-24">
         <h1 className="text-3xl font-bold mb-6 text-zinc-900 dark:text-zinc-100 text-center">
           Editar Perfil
