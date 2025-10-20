@@ -4,7 +4,7 @@ import { formatDateAndTime } from "../utils/formatDate";
 export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
   return (
     <div>
-      <ul className="grid grid-cols-3 gap-4">
+      <ul className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-4 gap-3">
         {tareas?.map((task) => (
           <div
             key={task.tarea_id}
