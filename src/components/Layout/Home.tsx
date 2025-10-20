@@ -98,7 +98,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="flex flex-col px-4 py-2 mt-10">
-        <h4>Usuarios que ya usan ésta app!</h4>
+        <h4 className="font-semibold">Usuarios que ya usan ésta app!</h4>
         <UserAvatarsGroup users={users} size={45} />
       </div>
     </div>
