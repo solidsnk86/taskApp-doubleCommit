@@ -49,8 +49,8 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <BackButton />
+    <div className="flex items-center justify-center min-h-screen" style={{ viewTransitionName: "page" }}>
+      <BackButton route="/login" />
       <form
         onSubmit={handleSubmit}
         className="bg-white dark:bg-zinc-900/50 p-8 text-zinc-800 dark:text-zinc-200 shadow-md w-96 border border-zinc-200 dark:border-zinc-800"

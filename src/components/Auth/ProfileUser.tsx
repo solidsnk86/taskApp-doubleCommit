@@ -60,7 +60,7 @@ export const ProfileUser = () => {
   };
 
   return (
-    <section className="max-w-3xl flex mx-auto justify-center px-4">
+    <section className="max-w-3xl flex mx-auto justify-center px-4" style={{ viewTransitionName: "page" }}>
       <div className="w-full p-8 bg-white/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800 shadow-xl mt-24 backdrop-blur">
         <h1 className="text-3xl font-bold mb-6 text-center text-zinc-900 dark:text-zinc-100 tracking-tight">
           Perfil de Usuario

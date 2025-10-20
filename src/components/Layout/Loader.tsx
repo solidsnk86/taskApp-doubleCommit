@@ -1,6 +1,23 @@
 export const Loader = () => {
   return (
     <div className="absolute top-0 left-0 h-full w-full backdrop-blur-xl bg-zinc-900/10">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        width="100%"
+        height="100%"
+        style={{ position: "fixed", top: 0, left: 0, zIndex: -1, height: "100dvh", opacity: 0.1 }}
+      >
+        <filter id="noiseFilter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="9.5"
+            numOctaves="2"
+            stitchTiles="stitch"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+      </svg>
       <div className="flex m-auto h-screen justify-center items-center">
         <span className="animate-spin duration-1000">
           <svg
