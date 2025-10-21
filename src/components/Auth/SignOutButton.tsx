@@ -18,7 +18,7 @@ export const SignOutButton = ({
       onClick={signout}
       style={styles}
       className={`md:flex items-center justify-center gap-2 w-44 px-4 py-2 text-sm rounded-md border border-zinc-200 dark:border-zinc-800
-         text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ${mediaQuerys}`}
+         text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ${mediaQuerys} btn-task`}
     >
       {isLoading ? (
         <span className="animate-spin duration-1000">
@@ -55,6 +55,7 @@ export const SignOutButton = ({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="svg-animation"
         >
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
           <polyline points="16 17 21 12 16 7" />
