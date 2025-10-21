@@ -128,3 +128,15 @@ dialog::backdrop {
     filter: blur(0);
   }
 }
+
+.svg-animation {
+  stroke-dasharray: 1300;
+  stroke-dashoffset: 1300;
+animation: dash 2s ease-in infinite;
+}
+
+dash {
+  fill-opacity: 1;
+  stroke-dashoffset: 0px;
+  stroke-width: 1px;
+}
