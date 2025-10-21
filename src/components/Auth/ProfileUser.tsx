@@ -146,7 +146,7 @@ export const ProfileUser = () => {
           {/* Mis tareas */}
           <button
             onClick={() => navigate("/tasks")}
-            className="flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
+            className="btn-animation flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -158,6 +158,7 @@ export const ProfileUser = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="svg-animation"
             >
               <path d="M9 11l3 3L22 4" />
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
@@ -168,7 +169,7 @@ export const ProfileUser = () => {
           {/* Editar perfil */}
           <button
             onClick={() => navigate("/profile/edit")}
-            className="flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
+            className="btn-animation flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -180,6 +181,7 @@ export const ProfileUser = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="svg-animation"
             >
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -190,7 +192,7 @@ export const ProfileUser = () => {
           {/* Eliminar cuenta */}
           <button
             onClick={confirmDeleteUser}
-            className="flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
+            className="btn-animation flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -202,6 +204,7 @@ export const ProfileUser = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="svg-animation"
             >
               <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
               <circle cx="12" cy="7" r="4" />

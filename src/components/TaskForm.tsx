@@ -93,7 +93,7 @@ export const TaskForm = () => {
 
           <button
             type="submit"
-            className="w-full flex gap-2 items-center justify-center bg-zinc-900/60 text-white py-2 hover:opacity-80 transition duration-200 rounded-md border border-zinc-200 dark:border-zinc-800 btn-task"
+            className="w-full flex gap-2 items-center justify-center bg-zinc-900/60 text-white py-2 hover:opacity-80 transition duration-200 rounded-md border border-zinc-200 dark:border-zinc-800 btn-animation"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
