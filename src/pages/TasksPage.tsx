@@ -109,7 +109,9 @@ export const TasksPage = () => {
           <h1 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-200">
             No hay tareas creadas aún 🤔
           </h1>
-          <small className="text-zinc-800 dark:text-zinc-400">Ninguna tarea a completar</small>
+          <small className="text-zinc-800 dark:text-zinc-400">
+            Ninguna tarea a completar
+          </small>
           <button
             onClick={() => navigate("/create-task")}
             className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition rounded-md"

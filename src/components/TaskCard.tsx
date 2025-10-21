@@ -3,7 +3,9 @@ import type { PartialTasksProps } from "../definitions";
 import { formatDateAndTime } from "../utils/formatDate";
 
 export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
-  const [doneTasks, setDoneTasks] = useState<Record<string | number, boolean>>({});
+  const [doneTasks, setDoneTasks] = useState<Record<string | number, boolean>>(
+    {}
+  );
 
   const handleTaskIsDone = (id: number | string) => {
     setDoneTasks((prev) => ({
