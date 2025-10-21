@@ -6,7 +6,7 @@ import type { PartialUserProps } from "../../definitions";
 import { useAuth } from "../../contexts/userProvider";
 
 export const RegisterForm = () => {
-  const { refreshUser } = useAuth()
+  const { refreshUser } = useAuth();
   const navigate = useNavigate();
   const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -15,32 +15,35 @@ export const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    await fetch("https://e-retro-back.vercel.app/api/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ name, email, password }),
-    })
-      .then((res) => res.json())
-      .then(async(data: PartialUserProps) => {
-        setIsLoading(false);
-        await refreshUser()
-        navigate("/profile");
-        showDialog({
-          content: (
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">¡Registro exitoso!</h3>
-              <p className="mt-2 text-rose-400">{data?.message}</p>
-            </div>
-          ),
-        });
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        showDialog({ content: <div>{err.message}</div> });
+    try {
+      e.preventDefault();
+      setIsLoading(true);
+      const response = await fetch(
+        "https://e-retro-back.vercel.app/api/signup",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
+      if (!response.ok) {
+        showDialog({ content: <div>{response.statusText}</div> });
+      }
+      const data: PartialUserProps = await response.json();
+      showDialog({
+        content: (
+          <div className="p-4">
+            <h3 className="text-lg font-semibold">¡Registro exitoso!</h3>
+            <p className="mt-2 text-rose-400">{data?.message}</p>
+          </div>
+        ),
       });
+      await refreshUser()
+      navigate("/profile")
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleShowPassword = () => {
@@ -48,7 +51,10 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{ viewTransitionName: "page" }}>
+    <div
+      className="flex items-center justify-center min-h-screen"
+      style={{ viewTransitionName: "page" }}
+    >
       <BackButton route="/login" />
       <form
         onSubmit={handleSubmit}
@@ -93,7 +99,10 @@ export const RegisterForm = () => {
             required
           />
           {showPassword ? (
-            <span onClick={handleShowPassword} className="absolute top-8 right-3">
+            <span
+              onClick={handleShowPassword}
+              className="absolute top-8 right-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
@@ -114,7 +123,10 @@ export const RegisterForm = () => {
               </svg>
             </span>
           ) : (
-            <span onClick={handleShowPassword} className="absolute top-8 right-3">
+            <span
+              onClick={handleShowPassword}
+              className="absolute top-8 right-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
