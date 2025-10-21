@@ -27,11 +27,13 @@ export const RegisterForm = () => {
           body: JSON.stringify({ name, email, password }),
         }
       );
+      const data: PartialUserProps = await response.json();
+
       if (!response.ok) {
-        showDialog({ content: <div>{response.statusText}</div> });
+        showDialog({ content: <div>{data.message}</div> });
         return;
       }
-      const data: PartialUserProps = await response.json();
+      
       showDialog({
         content: (
           <div className="p-4">

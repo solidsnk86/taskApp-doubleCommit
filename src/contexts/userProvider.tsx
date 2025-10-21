@@ -119,24 +119,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const sendMail = async () => {
-    try {
-      const res = await fetch(
-        "https://e-retro-back.vercel.app/api/email-sender",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        }
-      );
-      if (!res.ok) throw new Error("Error al enviar email");
-      const data = await res.json();
-      setUser(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
     <AuthContext.Provider
       value={{
