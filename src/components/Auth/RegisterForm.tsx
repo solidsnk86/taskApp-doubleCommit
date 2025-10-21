@@ -29,6 +29,7 @@ export const RegisterForm = () => {
       );
       if (!response.ok) {
         showDialog({ content: <div>{response.statusText}</div> });
+        return;
       }
       const data: PartialUserProps = await response.json();
       showDialog({
