@@ -9,7 +9,7 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
   const { signin, auth, error, isLoading } = useAuth();
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -28,13 +28,19 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{ viewTransitionName: "page" }}>
+    <div
+      className="flex items-center justify-center min-h-screen"
+      style={{ viewTransitionName: "page" }}
+    >
       <BackButton />
       <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-blue-200 dark:border-zinc-800 p-8">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Iniciar Sesión
         </h2>
-        <form onSubmit={handleSubmit} className="text-zinc-800 dark:text-zinc-200">
+        <form
+          onSubmit={handleSubmit}
+          className="text-zinc-800 dark:text-zinc-200"
+        >
           <div className="mb-4">
             <label
               className="block text-gray-700 dark:text-zinc-400"
@@ -122,7 +128,36 @@ export const LoginForm = () => {
                 : "bg-zinc-200 dark:bg-zinc-900/60 text-white hover:opacity-80"
             }`}
           >
-            {isLoading ? "Ingresando..." : "Iniciar Sesión"}
+            {isLoading ? (
+              <p className="flex gap-2 items-center justify-center">
+                <span className="animate-spin duration-1000">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-loader-icon lucide-loader"
+                  >
+                    <path d="M12 2v4" />
+                    <path d="m16.2 7.8 2.9-2.9" />
+                    <path d="M18 12h4" />
+                    <path d="m16.2 16.2 2.9 2.9" />
+                    <path d="M12 18v4" />
+                    <path d="m4.9 19.1 2.9-2.9" />
+                    <path d="M2 12h4" />
+                    <path d="m4.9 4.9 2.9 2.9" />
+                  </svg>
+                </span>
+                Ingresando..
+              </p>
+            ) : (
+              "Iniciar Sesión"
+            )}
           </button>
         </form>
 
@@ -133,7 +168,10 @@ export const LoginForm = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-600">
             ¿No tienes una cuenta?{" "}
-            <span onClick={() => navigate("/register")} className="text-blue-500 hover:underline cursor-pointer">
+            <span
+              onClick={() => navigate("/register")}
+              className="text-blue-500 hover:underline cursor-pointer"
+            >
               Regístrate aquí
             </span>
           </p>
