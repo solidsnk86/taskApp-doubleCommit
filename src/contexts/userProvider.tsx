@@ -13,7 +13,7 @@ interface AuthContextType {
   signin: (email: string, password: string) => Promise<void>;
   signout: () => Promise<void>;
   deleteUser: (id: number) => Promise<void>;
-  refreshUser: () => Promise<void>
+  refreshUser: () => Promise<void>;
   isLoading: boolean;
   error: Error | null;
 }
@@ -56,7 +56,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       if (res.status === 403) throw new Error("La contraseña es incorrecta.");
-      if (res.status === 404) throw new Error("El correo electrónico no está registrado.")
+      if (res.status === 404)
+        throw new Error("El correo electrónico no está registrado.");
 
       const data = await res.json();
 
@@ -89,10 +90,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await fetch(`https://e-retro-back.vercel.app/api/delete/user/${id}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `https://e-retro-back.vercel.app/api/delete/user/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       if (!res.ok) throw new Error("Error al eliminar usuario");
       setUser(null);
     } catch (err) {
@@ -114,11 +118,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.error(err);
     }
   };
-  
+
+  const sendMail = async () => {
+    try {
+      const res = await fetch(
+        "https://e-retro-back.vercel.app/api/email-sender",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        }
+      );
+      if (!res.ok) throw new Error("Error al enviar email");
+      const data = await res.json();
+      setUser(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <AuthContext.Provider
-      value={{ auth: user, signin, signout, deleteUser, refreshUser, isLoading, error }}
+      value={{
+        auth: user,
+        signin,
+        signout,
+        deleteUser,
+        refreshUser,
+        isLoading,
+        error,
+      }}
     >
       {children}
     </AuthContext.Provider>
