@@ -129,14 +129,25 @@ dialog::backdrop {
   }
 }
 
-.svg-animation {
+.btn-task:hover .svg-animation {
   stroke-dasharray: 1300;
   stroke-dashoffset: 1300;
-animation: dash 2s ease-in infinite;
+animation: dash 2s ease-in forwards;
 }
 
 dash {
   fill-opacity: 1;
   stroke-dashoffset: 0px;
   stroke-width: 1px;
+}
+
+@keyframes dash {
+  70% {
+    fill-opacity: 0;
+  }
+  100% {
+    fill-opacity: 100%;
+    stroke-dashoffset: 0;
+    stroke-width: 1;
+  }
 }

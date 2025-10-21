@@ -93,7 +93,7 @@ export const TaskForm = () => {
 
           <button
             type="submit"
-            className="w-full flex gap-2 items-center justify-center bg-zinc-900/60 text-white py-2 hover:opacity-80 transition duration-200 rounded-md border border-zinc-200 dark:border-zinc-800"
+            className="w-full flex gap-2 items-center justify-center bg-zinc-900/60 text-white py-2 hover:opacity-80 transition duration-200 rounded-md border border-zinc-200 dark:border-zinc-800 btn-task"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ export const TaskForm = () => {
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="lucide lucide-square-pen-icon lucide-square-pen stroke-1 stroke-lime-300"
+              className="stroke-1 stroke-lime-300 svg-animation"
             >
               <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
               <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
