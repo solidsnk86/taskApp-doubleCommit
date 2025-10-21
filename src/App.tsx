@@ -19,14 +19,6 @@ export default function App() {
 
       {/* Rutas protegidas */}
       <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
-      <Route
         path="/tasks"
         element={
           <ProtectedRoute>
