@@ -30,7 +30,7 @@ export const LoginForm = () => {
   return (
     <div className="flex items-center justify-center min-h-screen" style={{ viewTransitionName: "page" }}>
       <BackButton />
-      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 backdrop-blur-md border-blue-600 dark:border-zinc-700 p-8">
+      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-blue-200 dark:border-zinc-800 p-8">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Iniciar Sesión
         </h2>
@@ -47,7 +47,7 @@ export const LoginForm = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 block w-full p-2 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
           </div>
@@ -63,7 +63,7 @@ export const LoginForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 block w-full p-2 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
             {showPassword ? (
@@ -116,10 +116,10 @@ export const LoginForm = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-2 transition duration-200 select-none ${
+            className={`w-full py-2 transition duration-200 select-none rounded-md border border-zinc-200 dark:border-zinc-800/80 ${
               isLoading
-                ? "bg-zinc-400 cursor-not-allowed"
-                : "bg-zinc-800 text-white hover:bg-zinc-700"
+                ? "bg-zinc-400 dark:bg-zinc-600 cursor-not-allowed"
+                : "bg-zinc-200 dark:bg-zinc-900/60 text-white hover:opacity-80"
             }`}
           >
             {isLoading ? "Ingresando..." : "Iniciar Sesión"}

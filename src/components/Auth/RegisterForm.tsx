@@ -53,7 +53,7 @@ export const RegisterForm = () => {
       <BackButton route="/login" />
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-zinc-900/50 p-8 text-zinc-800 dark:text-zinc-200 w-[342px] shadow-md border border-zinc-200 dark:border-zinc-800"
+        className="bg-white dark:bg-zinc-900/50 p-8 text-zinc-800 dark:text-zinc-200 w-[342px] rounded-lg shadow-md border border-zinc-200 dark:border-zinc-800"
       >
         <h2 className="text-lg font-bold mb-4 text-zinc-800 dark:text-white">
           Registro
@@ -66,7 +66,7 @@ export const RegisterForm = () => {
             type="text"
             value={name}
             onChange={(e) => setUsername(e.target.value)}
-            className="mt-1 block w-full border border-gray-300  p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-md dark:border-zinc-800 p-2 outline-none focus:ring focus:ring-indigo-400"
             required
           />
         </div>
@@ -78,7 +78,7 @@ export const RegisterForm = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full border border-gray-300  p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-md dark:border-zinc-800 p-2 outline-none focus:ring focus:ring-indigo-400"
             required
           />
         </div>
@@ -90,7 +90,7 @@ export const RegisterForm = () => {
             type={showPassword ? "password" : "text"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full border border-gray-300  p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:border-zinc-800 outline-none focus:ring focus:ring-indigo-400"
             required
           />
           {showPassword ? (
@@ -136,7 +136,7 @@ export const RegisterForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-zinc-800 text-white p-2 hover:bg-zinc-700"
+          className="w-full bg-zinc-200 dark:bg-zinc-900 font-semibold text-zinc-800 dark:text-white p-2 rounded-md border border-zinc-300 dark:border-zinc-800/80 hover:opacity-80 hover:shadow"
         >
           {isLoading ? "Procesando..." : "Registrarse"}
         </button>

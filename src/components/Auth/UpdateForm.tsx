@@ -128,7 +128,7 @@ export const UpdateForm = () => {
 
   return (
     <section className="max-w-2xl flex mx-auto justify-center" style={{ viewTransitionName: "page" }}>
-      <div className="w-full p-6 bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 shadow-lg my-24">
+      <div className="w-full p-6 bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 shadow-lg my-24 rounded-lg">
         <h1 className="text-3xl font-bold mb-6 text-zinc-900 dark:text-zinc-100 text-center">
           Editar Perfil
         </h1>
@@ -165,7 +165,7 @@ export const UpdateForm = () => {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploadingImage}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed active:outline outline-blue-500 outline-offset-2"
+              className="flex items-center rounded-md gap-2 px-4 py-2 bg-blue-600 border border-blue-500 text-white shadow-sm hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed active:outline outline-blue-500 outline-offset-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +198,7 @@ export const UpdateForm = () => {
                 placeholder="https://ejemplo.com/imagen.jpg"
                 value={userAvatar.startsWith("data:") ? "" : userAvatar}
                 onChange={(e) => setUserAvatar(e.target.value)}
-                className="w-full px-4 py-2  border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
           </div>
@@ -213,7 +213,7 @@ export const UpdateForm = () => {
               placeholder="Tu nombre"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              className="w-full px-4 py-2  border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 outline-none"
               required
             />
           </div>
@@ -228,7 +228,7 @@ export const UpdateForm = () => {
               placeholder="Tu email"
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
-              className="w-full px-4 py-2  border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 outline-none"
               required
             />
           </div>
@@ -246,19 +246,19 @@ export const UpdateForm = () => {
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="lucide lucide-lock-icon lucide-lock"
+              className="lucide lucide-lock-icon lucide-lock stroke-2 stroke-amber-500"
             >
               <rect width={18} height={11} x={3} y={11} rx={2} ry={2} />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
 
-            <p className="hover:underline hover:text-blue-500">Actualizar contraseña</p>
+            <p className="hover:underline text-blue-500">Actualizar contraseña</p>
           </div>
           {/* Botones */}
           <aside className="flex justify-center gap-3 mt-4">
             <button
               type="submit"
-              className="flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-green-700 transition"
+              className="flex items-center rounded-md gap-2 px-5 py-2.5 border text-ambe border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-green-700 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -281,7 +281,7 @@ export const UpdateForm = () => {
             <button
               type="button"
               onClick={() => navigate("/profile")}
-              className="flex items-center gap-2 px-5 py-2.5 bg-zinc-800 text-white shadow-sm hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition"
+              className="flex items-center rounded-md gap-2 px-5 py-2.5 bg-zinc-800 text-white shadow-sm hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

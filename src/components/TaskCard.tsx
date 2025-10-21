@@ -22,7 +22,7 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
             <div
               id={`task-${task.tarea_id}`}
               key={task.tarea_id}
-              className={`flex flex-col border border-zinc-200 dark:border-zinc-800/50 bg-white dark:bg-zinc-900/50 p-5 rounded-xl relative text-zinc-800 dark:text-zinc-100 transition-all duration-300 ${
+              className={`flex flex-col border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/50 p-5 rounded-xl relative text-zinc-800 dark:text-zinc-100 transition-all duration-300 ${
                 isDone ? "opacity-60" : ""
               }`}
             >
@@ -50,7 +50,7 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
                 <span
                   title={`Eliminar tarea ${task.tarea_id}`}
                   onClick={() => deleteTask && deleteTask(task.tarea_id)}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-xl hover:bg-rose-400 group transition-colors duration-300"
+                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-rose-400 group transition-colors duration-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -73,21 +73,21 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
                 <span
                   onClick={() => handleTaskIsDone(task.tarea_id)}
                   title={`Marcar tarea ${task.titulo} como hecha.`}
-                  className={`p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-xl hover:bg-green-400 group transition-colors duration-300 ${
+                  className={`p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 group ${
                     isDone ? "bg-green-400 text-white" : ""
                   }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={20}
-                    height={20}
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="lucide lucide-check-icon lucide-check"
+                    className="lucide lucide-check-icon lucide-check group-hover:stroke-white"
                   >
                     <path d="M20 6 9 17l-5-5" />
                   </svg>

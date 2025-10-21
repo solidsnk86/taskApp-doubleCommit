@@ -65,7 +65,7 @@ export const ProfileUser = () => {
       className="max-w-3xl flex mx-auto justify-center px-4"
       style={{ viewTransitionName: "page" }}
     >
-      <div className="w-full p-8 bg-white/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800 shadow-xl mt-24 backdrop-blur">
+      <div className="w-full p-8 bg-white/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800 shadow-xl mt-24 backdrop-blur rounded-lg">
         <h1 className="text-3xl font-bold mb-6 text-center text-zinc-900 dark:text-zinc-100 tracking-tight">
           Perfil de Usuario
         </h1>
@@ -146,7 +146,7 @@ export const ProfileUser = () => {
           {/* Mis tareas */}
           <button
             onClick={() => navigate("/tasks")}
-            className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
+            className="flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ export const ProfileUser = () => {
           {/* Editar perfil */}
           <button
             onClick={() => navigate("/profile/edit")}
-            className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
+            className="flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +190,7 @@ export const ProfileUser = () => {
           {/* Eliminar cuenta */}
           <button
             onClick={confirmDeleteUser}
-            className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
+            className="flex items-center rounded-md justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
