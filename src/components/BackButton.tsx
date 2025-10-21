@@ -5,7 +5,7 @@ export const BackButton = ({ route }: { route?: string }) => {
   return (
     <div
       onClick={() => navigate(route || "/")}
-      className="absolute top-20 left-4 flex px-6 py-3 bg-[#fff] dark:bg-zinc-900/50 text-zinc-800 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 gap-3 items-center cursor-pointer group hover:brightness-125"
+      className="absolute top-16 left-2 flex px-6 py-3 bg-[#fff] dark:bg-zinc-900/50 text-zinc-800 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 gap-3 items-center cursor-pointer group hover:brightness-125"
       title="Volver"
     >
       <svg

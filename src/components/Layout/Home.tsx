@@ -32,11 +32,8 @@ export const Home = () => {
   useEffect(() => {
     if (auth?.user) {
       const executed = JSON.parse(localStorage.getItem("executed") || "false");
-
-      // Si ya se ejecutó antes, no mostrar el cartel
       if (executed === true) return;
 
-      // Si no se ejecutó, lo marcamos como ejecutado
       localStorage.setItem("executed", JSON.stringify(true));
 
       const worker = new Worker(
@@ -46,7 +43,6 @@ export const Home = () => {
       worker.postMessage(1000);
       worker.onmessage = (event: MessageEvent<number>) => {
         const timer = event.data;
-
         if (typeof timer !== "number") return;
 
         if (timer === 3) {
@@ -74,32 +70,39 @@ export const Home = () => {
   }, [auth]);
 
   return (
-    <div className="flex flex-col items-center justify-center mt-28 px-4">
-      <div className="text-center max-w-2xl">
-        <p className="welcome-p w-fit mx-auto text-zinc-100 italic text-xs md:text-sm px-2 mb-4 bg-gradient-to-br from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] border border-zinc-400/50 rounded-full">
-          “Una tarea a la vez, un paso más cerca del éxito.”
-        </p>
-        <h1 className="welcome-h1 text-4xl md:text-5xl xl:text-[3.3rem] font-extrabold bg-clip-text bg-gradient-to-t from-blue-400 to-blue-600 text-transparent">
-          Bienvenido a tu Gestor de Tareas
-        </h1>
+    <div className="flex flex-col items-center justify-center mt-20 sm:mt-24 lg:mt-28 px-4 text-center">
+      {/* Mensaje motivacional */}
+      <p className="welcome-p w-fit mx-auto text-zinc-100 italic text-[0.75rem] sm:text-sm md:text-base px-3 py-1 mb-5 bg-gradient-to-br from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] border border-zinc-400/50 rounded-full">
+        “Una tarea a la vez, un paso más cerca del éxito.”
+      </p>
 
-        <p className="text-lg text-gray-400 my-1">
-          Organiza tu día con facilidad, prioriza lo importante y alcanza tus
-          objetivos sin estrés.
-        </p>
+      {/* Título principal */}
+      <h1 className="welcome-h1 text-3xl sm:text-4xl md:text-5xl xl:text-[3.3rem] font-extrabold bg-clip-text bg-gradient-to-t from-blue-400 to-blue-600 text-transparent leading-snug md:leading-tight">
+        Bienvenido a tu Gestor de Tareas
+      </h1>
 
-        <div className="mt-8">
-          <button
-            onClick={() => navigate("/tasks")}
-            className="welcome-btn px-6 py-3 bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 transition transform hover:scale-105 hover:shadow-blue-600/50 shadow-2xl"
-          >
-            Comenzar ahora
-          </button>
-        </div>
+      {/* Subtítulo */}
+      <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-3 max-w-xl mx-auto">
+        Organiza tu día con facilidad, prioriza lo importante y alcanza tus
+        objetivos sin estrés.
+      </p>
+
+      {/* Botón principal */}
+      <div className="mt-10">
+        <button
+          onClick={() => navigate("/tasks")}
+          className="welcome-btn px-6 py-3 sm:px-8 sm:py-4 bg-blue-600 text-white font-semibold text-base sm:text-lg hover:bg-blue-700 transition transform hover:scale-105 hover:shadow-blue-600/50 shadow-2xl rounded-xl border border-blue-500 hover:border-blue-600"
+        >
+          Comenzar ahora
+        </button>
       </div>
-      <div className="flex flex-col px-4 py-2 mt-10">
-        <h4 className="font-semibold text-zinc-800 dark:text-zinc-100">Usuarios que ya usan ésta app!</h4>
-        <UserAvatarsGroup users={users} size={45} />
+
+      {/* Sección de usuarios */}
+      <div className="flex flex-col items-center mt-14 space-y-3">
+        <h4 className="font-semibold text-zinc-800 dark:text-zinc-100 text-sm sm:text-base md:text-lg">
+          Usuarios que ya usan esta app
+        </h4>
+        <UserAvatarsGroup users={users} size={50} />
       </div>
     </div>
   );

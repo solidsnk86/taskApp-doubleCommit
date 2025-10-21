@@ -28,6 +28,7 @@ interface UserAvatarsGroupProps {
             <img
               src={user.avatar}
               alt={user.name}
+              loading="eager"
               className="w-full h-full object-cover"
             />
           </a>

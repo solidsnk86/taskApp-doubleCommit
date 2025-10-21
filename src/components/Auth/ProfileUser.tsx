@@ -77,7 +77,7 @@ export const ProfileUser = () => {
               "https://cdn-icons-png.flaticon.com/512/149/149071.png"
             }
             alt="User Avatar"
-            className="w-28 h-28 rounded-full border-4 border-indigo-500/70 shadow-md object-cover transition-transform hover:scale-105"
+            className="w-28 h-28 rounded-full border-4 border-indigo-400 dark:border-indigo-500/70 shadow-md object-cover transition-transform hover:scale-105"
           />
           <div className="mt-5 sm:mt-0 text-center sm:text-left">
             <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
@@ -89,8 +89,8 @@ export const ProfileUser = () => {
             <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width={18}
-                height={18}
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -115,18 +115,24 @@ export const ProfileUser = () => {
             <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width={18}
-                height={18}
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth={2}
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="lucide lucide-rotate-cw-icon lucide-rotate-cw"
+                className="lucide lucide-calendar-sync-icon lucide-calendar-sync"
               >
-                <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
-                <path d="M21 3v5h-5" />
+                <path d="M11 10v4h4" />
+                <path d="m11 14 1.535-1.605a5 5 0 0 1 8 1.5" />
+                <path d="M16 2v4" />
+                <path d="m21 18-1.535 1.605a5 5 0 0 1-8-1.5" />
+                <path d="M21 22v-4h-4" />
+                <path d="M21 8.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4.3" />
+                <path d="M3 10h4" />
+                <path d="M8 2v4" />
               </svg>
               {auth?.user?.user_update
                 ? "Cuenta actualizada el " +
@@ -137,9 +143,8 @@ export const ProfileUser = () => {
         </div>
 
         <aside className="flex flex-wrap justify-center gap-4 mt-8">
-          
-           {/* Mis tareas */}
-           <button
+          {/* Mis tareas */}
+          <button
             onClick={() => navigate("/tasks")}
             className="flex items-center justify-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-white shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-48"
           >
@@ -206,7 +211,11 @@ export const ProfileUser = () => {
             Eliminar Cuenta
           </button>
 
-          <SignOutButton signout={signout} isLoading={isLoading} mediaQuerys="flex md:hidden w-full py-2.5" />
+          <SignOutButton
+            signout={signout}
+            isLoading={isLoading}
+            mediaQuerys="flex md:hidden w-full py-2.5"
+          />
         </aside>
       </div>
     </section>

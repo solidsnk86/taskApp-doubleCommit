@@ -110,7 +110,7 @@ dialog::backdrop {
   from {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(50%) scale(0.5);
+    transform: translateX(-50%) scale(0.999);
   }
   to {
     opacity: 0;

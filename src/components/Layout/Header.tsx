@@ -10,6 +10,7 @@ export const Header = () => {
     <header className="w-full h-14 fixed top-0 left-0 z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800">
       <nav className="px-4 sm:px-6 py-2 flex items-center justify-between">
         <div
+          title="Inicio"
           onClick={() => navigate("/")}
           className="flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform duration-500"
         >
@@ -36,12 +37,16 @@ export const Header = () => {
               </span>
             </Link>
 
-           <SignOutButton signout={signout} isLoading={isLoading} mediaQuerys="hidden"  />
+            <SignOutButton
+              signout={signout}
+              isLoading={isLoading}
+              mediaQuerys="hidden"
+            />
           </div>
         ) : (
           <button
             onClick={() => navigate("/login")}
-            className="flex items-center gap-2 px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 transition group relative active:outline outline-blue-500 outline-offset-2 z-50"
+            className="flex items-center gap-2 px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition group relative active:outline outline-blue-500 outline-offset-2 z-50"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

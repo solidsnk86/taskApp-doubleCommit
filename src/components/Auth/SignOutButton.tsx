@@ -17,7 +17,7 @@ export const SignOutButton = ({
     <button
       onClick={signout}
       style={styles}
-      className={`md:flex items-center justify-center gap-2 w-44 px-4 py-2 text-sm border border-zinc-200 dark:border-zinc-800
+      className={`md:flex items-center justify-center gap-2 w-44 px-4 py-2 text-sm rounded-md border border-zinc-200 dark:border-zinc-800
          text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ${mediaQuerys}`}
     >
       {isLoading ? (
