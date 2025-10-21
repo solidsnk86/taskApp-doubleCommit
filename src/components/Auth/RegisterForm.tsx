@@ -32,7 +32,7 @@ export const RegisterForm = () => {
           content: (
             <div className="p-4">
               <h3 className="text-lg font-semibold">¡Registro exitoso!</h3>
-              <p className="mt-2 text-rose-400">Usuario: {data?.message}</p>
+              <p className="mt-2 text-rose-400">{data?.message}</p>
             </div>
           ),
         });
