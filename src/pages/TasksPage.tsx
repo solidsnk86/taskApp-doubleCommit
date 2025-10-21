@@ -112,7 +112,7 @@ export const TasksPage = () => {
           <small className="text-zinc-800 dark:text-zinc-400">Ninguna tarea a completar</small>
           <button
             onClick={() => navigate("/create-task")}
-            className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition"
+            className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition rounded-md"
           >
             Crea tu primer meta!
           </button>
@@ -148,7 +148,7 @@ export const TasksPage = () => {
         </h1>
         <button
           onClick={() => navigate("/create-task")}
-          className="flex gap-2 items-center px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition"
+          className="flex gap-2 items-center px-4 py-2 bg-indigo-600 border border-indigo-500 text-white hover:bg-indigo-700 transition rounded-md"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -72,7 +72,7 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
 
                 <span
                   onClick={() => handleTaskIsDone(task.tarea_id)}
-                  title={`Marcar tarea ${task.titulo} como hecha.`}
+                  title={`Marcar tarea ${task.titulo} como hecha. ✔`}
                   className={`p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 group ${
                     isDone ? "bg-green-400 text-white" : ""
                   }`}
