@@ -29,7 +29,7 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
               }`}
             >
               <h3
-                className={`text-xl font-bold transition-all duration-300 ${
+                className={`text-xl font-bold transition-all duration-300 w-64 ${
                   isDone ? "line-through text-zinc-400" : ""
                 }`}
               >
