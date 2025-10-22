@@ -92,7 +92,7 @@ export const TaskForm = () => {
         >
           <p className="text-indigo-700 dark:text-indigo-200 font-medium text-xs">
             Crea descripciones de tareas automáticas y creativas con ayuda de la
-            IA ✨ a partir de título!
+            IA ✨ a partir del título!
           </p>
         </div>
         <form
