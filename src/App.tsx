@@ -8,7 +8,6 @@ import { UpdatePage } from "./pages/UpdatePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { EditPassForm } from "./components/Auth/EditPassForm";
-import { AiPromptComponent } from "./components/AiPromptComponent";
 
 
 export default function App() {
@@ -18,7 +17,6 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/ai" element={<AiPromptComponent />} />
 
       {/* Rutas protegidas */}
       <Route
