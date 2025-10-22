@@ -39,7 +39,7 @@ export const LoginForm = () => {
       style={{ viewTransitionName: "page" }}
     >
       <BackButton />
-      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-blue-200 dark:border-zinc-800 p-8">
+      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Iniciar Sesión
         </h2>
@@ -131,7 +131,7 @@ export const LoginForm = () => {
             className={`w-full py-2 transition duration-200 select-none rounded-md border border-zinc-200 dark:border-zinc-800/80 ${
               isLoading
                 ? "bg-zinc-400 dark:bg-zinc-600 cursor-not-allowed"
-                : "bg-zinc-200 dark:bg-zinc-900/60 text-white hover:opacity-80"
+                : "bg-zinc-800 dark:bg-zinc-900/60 text-white hover:opacity-80"
             }`}
           >
             {isLoading ? (
