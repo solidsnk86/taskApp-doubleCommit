@@ -13,33 +13,35 @@ export const TaskForm = () => {
 
   async function getResume() {
     try {
-      setLoadingContext(true)
+      setLoadingContext(true);
       if (!titulo) {
         showDialog({
           content: (
             <div className="p-5">
-              ¡Ups! 😅 Para que la IA pueda ayudarte a generar una descripción más precisa, 
-              primero escribí un título que resuma tu tarea.
+              ¡Ups! 😅 Para que la IA pueda ayudarte a generar una descripción
+              más precisa, primero escribí un título que resuma tu tarea.
             </div>
-          )
+          ),
         });
         return;
       }
-      
-      const res = await fetch("https://e-retro-back.vercel.app/api/ai?title="+titulo, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
+
+      const res = await fetch(
+        "https://e-retro-back.vercel.app/api/ai?title=" + titulo,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       const data: { context: string } = await res.json();
 
       setDescripcion(data.context.replaceAll('"', ""));
     } catch (err) {
       console.error(err);
     } finally {
-      setLoadingContext(false)
+      setLoadingContext(false);
     }
   }
-
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -70,18 +72,32 @@ export const TaskForm = () => {
     }
   };
 
-
   return (
     <div
-      className="flex xl:max-w-xl md:max-w-md items-center justify-center mx-auto h-[100dvh] px-3"
+      className="flex items-center justify-center min-h-screen"
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
-      <div className="mx-auto w-full bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8 text-zinc-800 dark:text-zinc-100 mt-16">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
+      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-20">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-4">
           Crear Nueva Tarea
         </h2>
-        <form onSubmit={handleSubmit}>
+        <div
+          className="flex items-center gap-3 p-3 rounded-xl 
+                bg-white dark:bg-zinc-900/50 
+                backdrop-blur-md
+                border border-zinc-100 dark:border-zinc-800 
+                my-2"
+        >
+          <p className="text-indigo-700 dark:text-indigo-200 font-medium text-xs">
+            Crea descripciones de tareas automáticas y creativas con ayuda de la
+            IA ✨
+          </p>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="text-zinc-800 dark:text-zinc-100"
+        >
           <div className="mb-4">
             <label
               className="block text-gray-700 dark:text-zinc-400"
@@ -139,9 +155,11 @@ export const TaskForm = () => {
                 <circle cx={4} cy={20} r={2} />
               </svg>
               <div className="opacity-0 w-48 absolute bottom-10 -right-20 bg-indigo-400 border border-indigo-300 p-1 rounded-md group-hover:opacity-100 transition-opacity duration-300">
-              <small className="font-bold text-white">Describe tareas más rápido con IA a partir del título!</small>
-              <div className="absolute -bottom-4 right-[40%] translate-[-50%] border-t-transparent border-t-8 border-r-8 border-l-8 border-l-transparent border-b-8 border-indigo-400 rotate-45" />
-            </div>
+                <small className="font-bold text-white">
+                  Describe tareas más rápido con IA a partir del título!
+                </small>
+                <div className="absolute -bottom-4 right-[40%] translate-[-50%] border-t-transparent border-t-8 border-r-8 border-l-8 border-l-transparent border-b-8 border-indigo-400 rotate-45" />
+              </div>
             </span>
           </div>
 

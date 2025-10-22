@@ -22,7 +22,7 @@ body {
 
 dialog {
   background: var(--primary-bg-color);
-  max-width: 672px;
+  width: 50%;
   border: none;
   display: flex;
   justify-content: center;
@@ -152,5 +152,11 @@ dash {
     fill-opacity: 100%;
     stroke-dashoffset: 0;
     stroke-width: 1;
+  }
+}
+
+@media (width <= 762px) {
+  dialog {
+    width: 90%;
   }
 }
