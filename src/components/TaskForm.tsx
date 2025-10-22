@@ -7,12 +7,13 @@ export const TaskForm = () => {
   const [titulo, setTitulo] = useState<string>("");
   const [descripcion, setDescripcion] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [loadingConext, setLoadingContext] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
 
   async function getResume() {
     try {
-      setLoading(true)
+      setLoadingContext(true)
       if (!titulo) {
         showDialog({
           content: (
@@ -35,7 +36,7 @@ export const TaskForm = () => {
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false)
+      setLoadingContext(false)
     }
   }
 
@@ -109,7 +110,7 @@ export const TaskForm = () => {
             <textarea
               id="description"
               ref={textareaRef}
-              value={loading ? "Procesando..." : descripcion}
+              value={loadingConext ? "Procesando..." : descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 resize-none overflow-hidden"
               placeholder="Ej: Corregir el hero y optimizar el SEO de la página principal.."
