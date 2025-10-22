@@ -84,7 +84,7 @@ export const Home = () => {
       {/* Subtítulo */}
       <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-3 max-w-xl mx-auto">
         Organiza tu día con facilidad, prioriza lo importante y alcanza tus
-        objetivos sin estrés.
+        objetivos sin estrés con ayuda de la IA.
       </p>
 
       {/* Botón principal */}
