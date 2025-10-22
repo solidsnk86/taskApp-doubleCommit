@@ -26,13 +26,13 @@ export const TaskForm = () => {
         return;
       }
       
-      const res = await fetch("http://localhost:5000/api/ai?title="+titulo, {
+      const res = await fetch("https://e-retro-back.vercel.app/api/ai?title="+titulo, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
       const data: { context: string } = await res.json();
 
-      setDescripcion(data.context);
+      setDescripcion(data.context.replaceAll('"', ""));
     } catch (err) {
       console.error(err);
     } finally {
@@ -73,11 +73,11 @@ export const TaskForm = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen"
+      className="flex items-center justify-center overflow-hidden h-[100dvh] p-x3"
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
-      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8 w-full max-w-md text-zinc-800 dark:text-zinc-100 mt-16 px-3">
+      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8 w-full text-zinc-800 dark:text-zinc-100 mt-16">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Crear Nueva Tarea
         </h2>
