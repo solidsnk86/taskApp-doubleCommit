@@ -86,7 +86,7 @@ export const ProfileUser = () => {
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
               {auth?.user?.user_email}
             </p>
-            <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500 flex items-center gap-2">
+            <p className="mt-3 text-[11px] md:text-xs text-left text-zinc-500 dark:text-zinc-500 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -112,7 +112,7 @@ export const ProfileUser = () => {
               Cuenta creada el{" "}
               {formatDateAndTime(auth?.user?.created_at as string)}
             </p>
-            <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500 flex items-center gap-2">
+            <p className="mt-3 text-[11px] md:text-xs text-zinc-500 dark:text-zinc-500 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

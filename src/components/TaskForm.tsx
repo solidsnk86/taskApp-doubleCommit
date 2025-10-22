@@ -73,7 +73,7 @@ export const TaskForm = () => {
 
   return (
     <div
-      className="flex items-center justify-center overflow-hidden h-[100dvh] p-x3"
+      className="flex items-center justify-center overflow-hidden h-[100dvh] px-3"
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
