@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "./BackButton";
-import { Loader } from "./Layout/Loader";
+import { showDialog } from "../utils/dialog";
 
 export const TaskForm = () => {
   const [titulo, setTitulo] = useState<string>("");
@@ -9,6 +9,28 @@ export const TaskForm = () => {
   const [loading, setLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
+
+  async function getResume() {
+    try {
+      setLoading(true)
+      if (!titulo) {
+        showDialog({ content: <div>Escribe un título para describir con IA tu tarea!</div> })
+        return
+      }
+      const res = await fetch("http://localhost:5000/api/ai?title="+titulo, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data: { context: string } = await res.json();
+
+      setDescripcion(data.context);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -39,9 +61,6 @@ export const TaskForm = () => {
     }
   };
 
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
     <div
@@ -49,7 +68,7 @@ export const TaskForm = () => {
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
-      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8 w-full max-w-md text-zinc-800 dark:text-zinc-100">
+      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8 w-full max-w-md text-zinc-800 dark:text-zinc-100 mt-16 px-3">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Crear Nueva Tarea
         </h2>
@@ -72,7 +91,7 @@ export const TaskForm = () => {
             />
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <label
               className="block text-gray-700 dark:text-zinc-400"
               htmlFor="description"
@@ -82,13 +101,39 @@ export const TaskForm = () => {
             <textarea
               id="description"
               ref={textareaRef}
-              value={descripcion}
+              value={loading ? "Procesando..." : descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 resize-none overflow-hidden"
-              placeholder="Ej: Corregir el hero y optimizar el SEO de la página principal"
+              placeholder="Ej: Corregir el hero y optimizar el SEO de la página principal.."
               required
               rows={4}
             ></textarea>
+            <span
+              onClick={getResume}
+              className="border dark:border-indigo-300/80 p-1 rounded absolute bottom-2 right-2 bg-indigo-400/80 btn-animation group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={17}
+                height={17}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-sparkles-icon lucide-sparkles svg-animation"
+              >
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                <path d="M20 2v4" />
+                <path d="M22 4h-4" />
+                <circle cx={4} cy={20} r={2} />
+              </svg>
+              <div className="opacity-0 w-48 absolute bottom-10 -right-20 bg-indigo-400 border border-indigo-300 p-1 rounded-md group-hover:opacity-100 transition-opacity duration-300">
+              <small className="font-bold">Describe tareas más rápido con IA a partir del título!</small>
+              <div className="absolute -bottom-4 right-[40%] translate-[-50%] border-t-transparent border-t-8 border-r-8 border-l-8 border-l-transparent border-b-8 border-indigo-400 rotate-45" />
+            </div>
+            </span>
           </div>
 
           <button
@@ -110,7 +155,7 @@ export const TaskForm = () => {
               <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
               <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
             </svg>
-            Agregar tarea
+            {loading ? "Creando Tarea" : "Agregar tarea"}
           </button>
         </form>
       </div>
