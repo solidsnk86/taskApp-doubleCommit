@@ -30,7 +30,7 @@ export const Loader = () => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="lucide lucide-loader-icon lucide-loader stroke-1 stroke-zinc-400 dark:stroke-zinc-100"
+            className="lucide lucide-loader-icon lucide-loader stroke-1 stroke-zinc-800 dark:stroke-zinc-100"
           >
             <path d="M12 2v4" />
             <path d="m16.2 7.8 2.9-2.9" />
