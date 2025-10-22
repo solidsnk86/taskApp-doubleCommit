@@ -165,11 +165,11 @@ export const UpdateForm = () => {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploadingImage}
-              className="flex items-center rounded-md gap-2 px-4 py-2 bg-blue-600 border border-blue-500 text-white shadow-sm hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed active:outline outline-blue-500 outline-offset-2"
+              className="flex items-center btn-animation rounded-md gap-2 px-4 py-2 bg-blue-600 border border-blue-500 text-white shadow-sm hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed active:outline outline-blue-500 outline-offset-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
+                className="w-5 h-5 svg-animation"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -258,7 +258,7 @@ export const UpdateForm = () => {
           <aside className="flex justify-center gap-3 mt-4">
             <button
               type="submit"
-              className="flex items-center rounded-md gap-2 px-5 py-2.5 border text-ambe border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-green-700 transition"
+              className="flex btn-animation items-center rounded-md gap-2 px-5 py-2.5 border text-ambe border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-green-700 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +270,7 @@ export const UpdateForm = () => {
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="lucide lucide-save-icon lucide-save"
+                className="lucide lucide-save-icon lucide-save svg-animation"
               >
                 <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
                 <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />

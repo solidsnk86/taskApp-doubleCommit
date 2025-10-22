@@ -14,6 +14,7 @@ export const LoginForm = () => {
     e.preventDefault();
     try {
       await signin(email, password);
+      clenAllFields()
     } catch (err) {
       console.error("Error en inicio de sesión:", err);
     }
@@ -27,6 +28,11 @@ export const LoginForm = () => {
     setShowPassword((value) => !value);
   };
 
+  function clenAllFields() {
+    setEmail("")
+    setPassword("")
+  }
+ 
   return (
     <div
       className="flex items-center justify-center min-h-screen"

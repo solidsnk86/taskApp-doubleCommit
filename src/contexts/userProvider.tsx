@@ -34,12 +34,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         });
         if (res.status === 404) throw new Error("Sin sesión");
         const data = await res.json();
-        setIsLoading(false);
+        
         setUser(data);
       } catch (err) {
         setIsLoading(false);
         setUser(null);
         setError(err as Error);
+      } finally {
+        setIsLoading(false)
       }
     };
     checkSession();
@@ -61,7 +63,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const data = await res.json();
 
-      setIsLoading(false);
       setUser(data);
     } catch (err) {
       setError(err as Error);
@@ -78,11 +79,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         method: "GET",
         credentials: "include",
       });
-      setIsLoading(false);
+      
       setUser(null);
     } catch (err) {
-      setIsLoading(false);
+      setError(err as Error)
       console.error("Error al cerrar sesión:", err);
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -115,7 +118,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await res.json();
       setUser(data);
     } catch (err) {
+      setError(err as Error)
       console.error(err);
+    } finally {
+      setIsLoading(false)
     }
   };
 

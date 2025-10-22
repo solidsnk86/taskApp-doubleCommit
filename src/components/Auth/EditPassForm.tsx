@@ -12,9 +12,9 @@ export const EditPassForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const response = await fetch(
-      "https://e-retro-back.vercel.app/api/update/user/password",
+      "http://localhost:5000/api/update/user/password",
       {
-        method: "GET",
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       }
@@ -35,7 +35,7 @@ export const EditPassForm = () => {
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/profile/edit" />
-      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 backdrop-blur-md border-zinc-200 dark:border-zinc-700 shadow-lg p-8">
+      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Cambio de contraseña
         </h2>
