@@ -97,15 +97,6 @@ export const Home = () => {
         </button>
       </div>
 
-      <div className="mt-10">
-        <button
-          onClick={() => navigate("/ai")}
-          className="welcome-btn px-2 py-1 bg-blue-600 text-white font-semibold text-base sm:text-lg hover:bg-blue-700 transition transform hover:scale-105 hover:shadow-blue-600/50 shadow-2xl rounded-md border border-blue-500 hover:border-blue-600"
-        >
-          Probar IA
-        </button>
-      </div>
-
       {/* Sección de usuarios */}
       <div className="flex flex-col items-center mt-14 space-y-3">
         <h4 className="font-semibold text-zinc-800 dark:text-zinc-100 text-sm sm:text-base md:text-lg">
