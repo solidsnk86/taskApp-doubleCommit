@@ -67,7 +67,7 @@ export const TaskForm = () => {
               value={titulo}
               onChange={(e) => setTitulo(e.target.value)}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400"
-              placeholder="Ej: Comprar server"
+              placeholder="Ej: Actualizar landing del producto"
               required
             />
           </div>
@@ -85,7 +85,7 @@ export const TaskForm = () => {
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 resize-none overflow-hidden"
-              placeholder="Ej: Comprar dominio en Hostinguer"
+              placeholder="Ej: Corregir el hero y optimizar el SEO de la página principal"
               required
               rows={4}
             ></textarea>
