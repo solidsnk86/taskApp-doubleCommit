@@ -74,11 +74,12 @@ export const TaskForm = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen"
+      className="flex items-center justify-center min-h-screen px-4 sm:px-6 md:px-8"
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
-      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-14">
+      <div className="w-full max-w-md sm:max-w-lg shadow-lg bg-white dark:bg-zinc-900/50 rounded-lg bg-opacity-30 
+                      backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-24">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-4">
           Crear Nueva Tarea
         </h2>
