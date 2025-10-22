@@ -14,7 +14,7 @@ export const Header = () => {
           onClick={() => navigate("/")}
           className="flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform duration-500"
         >
-          <img src="/vite.svg" width={33} height={33} />
+          <img src="/vite.svg" width={33} height={33} loading="eager" alt="Logo" />
           <span className="font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] hidden md:flex">
             doubleCommit taskApp
           </span>
@@ -29,6 +29,7 @@ export const Header = () => {
                   auth?.user?.user_avatar ||
                   "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                 }
+                loading="eager"
                 alt={auth?.user?.user_name}
                 className="w-9 h-9 rounded-full object-cover border border-zinc-300 dark:border-zinc-700 hover:outline-4 outline-indigo-500/60 transition-colors duration-500"
               />
