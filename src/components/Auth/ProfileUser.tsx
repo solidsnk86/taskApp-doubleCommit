@@ -16,11 +16,8 @@ export const ProfileUser = () => {
     showDialog({
       content: (
         <div className="p-5">
-          Usuario{" "}
-          <strong className="text-rose-500">{auth?.user?.user_name}</strong> y
-          correo{" "}
-          <strong className="text-rose-500">{auth?.user?.user_email}</strong>{" "}
-          eliminado!
+          Cuenta eliminada{" "}
+          <strong className="text-rose-500">{auth?.user?.user_email}</strong>
         </div>
       ),
     });
