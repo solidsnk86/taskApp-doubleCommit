@@ -118,7 +118,7 @@ export const TaskForm = () => {
             ></textarea>
             <span
               onClick={getResume}
-              className="border dark:border-indigo-300/80 p-1 rounded absolute bottom-2 right-2 bg-indigo-400/80 btn-animation group"
+              className="border border-indigo-100 dark:border-indigo-300/80 p-1 rounded absolute bottom-2 right-2 bg-indigo-400/80 btn-animation group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,7 @@ export const TaskForm = () => {
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="lucide lucide-sparkles-icon lucide-sparkles svg-animation"
+                className="lucide lucide-sparkles-icon lucide-sparkles svg-animation stroke-2 stroke-amber-50"
               >
                 <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
                 <path d="M20 2v4" />
@@ -138,7 +138,7 @@ export const TaskForm = () => {
                 <circle cx={4} cy={20} r={2} />
               </svg>
               <div className="opacity-0 w-48 absolute bottom-10 -right-20 bg-indigo-400 border border-indigo-300 p-1 rounded-md group-hover:opacity-100 transition-opacity duration-300">
-              <small className="font-bold">Describe tareas más rápido con IA a partir del título!</small>
+              <small className="font-bold text-white">Describe tareas más rápido con IA a partir del título!</small>
               <div className="absolute -bottom-4 right-[40%] translate-[-50%] border-t-transparent border-t-8 border-r-8 border-l-8 border-l-transparent border-b-8 border-indigo-400 rotate-45" />
             </div>
             </span>
