@@ -78,7 +78,7 @@ export const TaskForm = () => {
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
-      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-20">
+      <div className="bg-white dark:bg-zinc-900/50 w-[342px] rounded-lg bg-opacity-30 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-14">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-4">
           Crear Nueva Tarea
         </h2>
@@ -91,7 +91,7 @@ export const TaskForm = () => {
         >
           <p className="text-indigo-700 dark:text-indigo-200 font-medium text-xs">
             Crea descripciones de tareas automáticas y creativas con ayuda de la
-            IA ✨
+            IA ✨ a partir de título!
           </p>
         </div>
         <form
