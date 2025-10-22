@@ -27,7 +27,7 @@ export const UpdateForm = () => {
     if (!file.type.startsWith("image/")) {
       showDialog({
         content: (
-          <div>
+          <div className="p-5">
             <p>Por favor selecciona un archivo de imagen válido.</p>
           </div>
         ),
@@ -39,7 +39,7 @@ export const UpdateForm = () => {
     if (file.size > 10 * 1024 * 1024) {
       showDialog({
         content: (
-          <div>
+          <div className="p-5">
             <p>La imagen no debe superar los 10MB.</p>
           </div>
         ),
@@ -53,7 +53,7 @@ export const UpdateForm = () => {
       setUserAvatar(base64);
       showDialog({
         content: (
-          <div>
+          <div className="p-5">
             <p>Imagen cargada correctamente.</p>
           </div>
         ),
@@ -61,7 +61,7 @@ export const UpdateForm = () => {
     } catch (error) {
       showDialog({
         content: (
-          <div>
+          <div className="p-5">
             <p>Error al cargar la imagen: {String(error)}</p>
           </div>
         ),
@@ -95,7 +95,7 @@ export const UpdateForm = () => {
         setIsLoading(false);
         showDialog({
           content: (
-            <div>
+            <div className="p-5">
               <p>{result.message || "Perfil actualizado correctamente."}</p>
             </div>
           ),
@@ -105,7 +105,7 @@ export const UpdateForm = () => {
       } else {
         showDialog({
           content: (
-            <div>
+            <div className="p-5">
               <p>
                 Error: {result.message || "No se pudo actualizar el perfil."}
               </p>
@@ -116,7 +116,7 @@ export const UpdateForm = () => {
     } catch (error) {
       showDialog({
         content: (
-          <div>
+          <div className="p-5">
             <p>Error al actualizar: {String(error)}</p>
           </div>
         ),

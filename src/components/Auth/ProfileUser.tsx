@@ -15,7 +15,7 @@ export const ProfileUser = () => {
     document.querySelector("dialog")?.remove();
     showDialog({
       content: (
-        <div>
+        <div className="p-5">
           Usuario{" "}
           <strong className="text-rose-500">{auth?.user?.user_name}</strong> y
           correo{" "}

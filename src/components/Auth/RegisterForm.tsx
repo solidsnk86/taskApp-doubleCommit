@@ -30,14 +30,14 @@ export const RegisterForm = () => {
       const data: PartialUserProps = await response.json();
 
       if (!response.ok) {
-        showDialog({ content: <div>{data.message}</div> });
+        showDialog({ content: <div className="p-5">{data.message}</div> });
         return;
       }
       
       showDialog({
         content: (
-          <div className="p-4">
-            <h3 className="text-lg font-semibold">¡Registro exitoso!</h3>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold text-center">¡Registro exitoso!</h3>
             <p className="mt-2 text-rose-400">{data?.message}</p>
           </div>
         ),

@@ -14,9 +14,17 @@ export const TaskForm = () => {
     try {
       setLoading(true)
       if (!titulo) {
-        showDialog({ content: <div>Escribe un título para describir con IA tu tarea!</div> })
-        return
+        showDialog({
+          content: (
+            <div className="p-5">
+              ¡Ups! 😅 Para que la IA pueda ayudarte a generar una descripción más precisa, 
+              primero escribí un título que resuma tu tarea.
+            </div>
+          )
+        });
+        return;
       }
+      
       const res = await fetch("http://localhost:5000/api/ai?title="+titulo, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
