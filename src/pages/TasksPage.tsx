@@ -62,7 +62,7 @@ export const TasksPage = () => {
       showDialog({
         content: (
           <div>
-            <h3>Se eliminó la tarea: {data.tarea.titulo}</h3>
+            <p className="text-rose-400">Se eliminó la tarea: <i className="text-zinc-800 dark:text-zinc-100">{data.tarea.titulo}</i></p>
           </div>
         ),
       });

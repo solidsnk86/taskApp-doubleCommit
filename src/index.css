@@ -135,7 +135,7 @@ dialog::backdrop {
 .btn-animation:hover .svg-animation {
   stroke-dasharray: 1300;
   stroke-dashoffset: 1300;
-animation: dash 2s ease-in forwards;
+  animation: dash 2s ease-in forwards;
 }
 
 dash {

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useAuth } from "../../contexts/userProvider";
 import { BackButton } from "../BackButton";
+import { Loader } from "../Layout/Loader";
 import { showDialog } from "../../utils/dialog";
 
 export const EditPassForm = () => {
@@ -8,34 +9,51 @@ export const EditPassForm = () => {
   const [password, setPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(true);
+  const [message, setMessage] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    const response = await fetch(
-      "http://localhost:5000/api/update/user/password",
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://e-retro-back.vercel.app/api/update/user/password",
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ password, newPassword }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessage(data.message);
+        return;
       }
-    );
 
-    if (!response.ok) throw new Error(response.statusText);
-
-    const data = await response.json();
-    showDialog({
-      content: <div className="p-5">{data.message}</div>,
-    });
+      showDialog({ content: <div className="p-3">{data.message}</div> })
+      setPassword("");
+      setNewPassword("");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+      setMessage("")
+    }
   };
 
-  const handleShowPassword = () => setShowPassword((value) => !value);
+  if (loading) return <Loader />;
+
   return (
     <div
       className="flex items-center justify-center min-h-screen"
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/profile/edit" />
-      <div className="bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8">
+      <div className="w-sm bg-white dark:bg-zinc-900/50 bg-opacity-30 rounded-lg backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg p-8">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white text-center mb-6">
           Cambio de contraseña
         </h2>
@@ -55,12 +73,12 @@ export const EditPassForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 block w-full p-2 border border-gray-20 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
             {showPassword ? (
               <span
-                onClick={handleShowPassword}
+                onClick={() => setShowPassword((value) => !value)}
                 className="absolute top-9 right-3"
               >
                 <svg
@@ -84,7 +102,7 @@ export const EditPassForm = () => {
               </span>
             ) : (
               <span
-                onClick={handleShowPassword}
+                onClick={() => setShowPassword((value) => !value)}
                 className="absolute top-9 right-3"
               >
                 <svg
@@ -114,16 +132,16 @@ export const EditPassForm = () => {
               Contraseña nueva
             </label>
             <input
-              type={showPassword ? "password" : "text"}
-              id="password"
+              type={showNewPassword ? "password" : "text"}
+              id="newPassword"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 block w-full p-2 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
-            {showPassword ? (
+            {showNewPassword ? (
               <span
-                onClick={handleShowPassword}
+                onClick={() => setShowNewPassword((value) => !value)}
                 className="absolute top-9 right-3"
               >
                 <svg
@@ -147,7 +165,7 @@ export const EditPassForm = () => {
               </span>
             ) : (
               <span
-                onClick={handleShowPassword}
+                onClick={() => setShowNewPassword((value) => !value)}
                 className="absolute top-9 right-3"
               >
                 <svg
@@ -171,10 +189,10 @@ export const EditPassForm = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-2 transition duration-200 ${
+            className={`w-full py-2 transition duration-200 select-none rounded-md border border-zinc-200 dark:border-zinc-800/80 ${
               isLoading
-                ? "bg-zinc-400 cursor-not-allowed"
-                : "bg-zinc-800 text-white hover:bg-zinc-700"
+                ? "bg-zinc-400 dark:bg-zinc-600 cursor-not-allowed"
+                : "bg-zinc-200 dark:bg-zinc-900/60 text-white hover:opacity-80"
             }`}
           >
             {isLoading ? "Procesando..." : "Cambiar Contraseña"}
@@ -183,6 +201,11 @@ export const EditPassForm = () => {
 
         {error && (
           <p className="text-red-500 text-center mt-3">*{error.message}</p>
+        )}
+        {message && (
+          <p className="text-center mt-3 text-sm text-red-500 dark:text-red-400">
+            *{message}
+          </p>
         )}
       </div>
     </div>
