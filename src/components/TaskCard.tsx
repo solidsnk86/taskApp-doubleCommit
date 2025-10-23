@@ -2,11 +2,14 @@ import { useState } from "react";
 import type { PartialTasksProps } from "../definitions";
 import { formatDateAndTime } from "../utils/formatDate";
 import { showDialog } from "../utils/dialog";
+import { Loader } from "./Layout/Loader";
 
 export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
   const [doneTasks, setDoneTasks] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleTaskIsDone = async (id: number | string) => {
+    setIsLoading(true)
     await fetch("https://e-retro-back.vercel.app/api/task/done/" + id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -14,13 +17,15 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setIsLoading(false)
         setDoneTasks(data.task.hecha);
         showDialog({ content: <div>{data.message}</div> });
       })
-      .catch((err) => showDialog({ content: <div>{err.message}</div> }));
+      .catch((err) => {showDialog({ content: <div>{err.message}</div> }); setIsLoading(false)});
   };
 
   const markTaskUndone = async (id: number | string) => {
+    setIsLoading(true)
     await fetch("https://e-retro-back.vercel.app/api/task/undone/" + id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -28,11 +33,14 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setIsLoading(false)
         setDoneTasks(data.task.hecha);
         showDialog({ content: <div>{data.message}</div> });
       })
-      .catch((err) => showDialog({ content: <div>{err.message}</div> }));
+      .catch((err) => {showDialog({ content: <div>{err.message}</div> }); setIsLoading(false)});
   };
+
+  if (isLoading) return <Loader />
 
   return (
     <div>
