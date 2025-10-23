@@ -138,11 +138,6 @@ dialog::backdrop {
   animation: dash 2s ease-in forwards;
 }
 
-dash {
-  fill-opacity: 1;
-  stroke-dashoffset: 0px;
-  stroke-width: 1px;
-}
 
 @keyframes dash {
   70% {

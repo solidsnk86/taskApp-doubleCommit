@@ -1,24 +1,44 @@
 import { useState } from "react";
 import type { PartialTasksProps } from "../definitions";
 import { formatDateAndTime } from "../utils/formatDate";
+import { showDialog } from "../utils/dialog";
 
 export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
-  const [doneTasks, setDoneTasks] = useState<Record<string | number, boolean>>(
-    {}
-  );
+  const [doneTasks, setDoneTasks] = useState<boolean>();
 
-  const handleTaskIsDone = (id: number | string) => {
-    setDoneTasks((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const handleTaskIsDone = async (id: number | string) => {
+    await fetch("https://e-retro-back.vercel.app/api/task/done/" + id, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setDoneTasks(data.task.hecha);
+        showDialog({ content: <div>{data.message}</div> });
+      })
+      .catch((err) => showDialog({ content: <div>{err.message}</div> }));
+  };
+
+  const markTaskUndone = async (id: number | string) => {
+    await fetch("https://e-retro-back.vercel.app/api/task/undone/" + id, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setDoneTasks(data.task.hecha);
+        showDialog({ content: <div>{data.message}</div> });
+      })
+      .catch((err) => showDialog({ content: <div>{err.message}</div> }));
   };
 
   return (
     <div>
       <ul className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-4 gap-3">
         {tareas?.map((task) => {
-          const isDone = doneTasks[task.tarea_id];
+          const isDone = doneTasks;
 
           return (
             <div
@@ -72,28 +92,54 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
                   </svg>
                 </span>
 
-                <span
-                  onClick={() => handleTaskIsDone(task.tarea_id)}
-                  title={`Marcar tarea ${task.titulo} como hecha. ✔`}
-                  className={`p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 group ${
-                    isDone ? "bg-green-400 text-white" : ""
-                  }`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-check-icon lucide-check group-hover:stroke-white"
+                {isDone ? (
+                  <span
+                    onClick={() => markTaskUndone(task.tarea_id)}
+                    title={`Deshacer tarea ${task.titulo} como hecha. ❌`}
+                    className={`p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-orange-300 group transition-colors duration-300 group ${
+                      isDone ? "bg-orange-400 text-white" : ""
+                    }`}
                   >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-undo-icon lucide-undo"
+                    >
+                      <path d="M3 7v6h6" />
+                      <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => handleTaskIsDone(task.tarea_id)}
+                    title={`Marcar tarea ${task.titulo} como hecha. ✔`}
+                    className={`p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 group ${
+                      isDone ? "bg-green-400 text-white" : ""
+                    }`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-check-icon lucide-check group-hover:stroke-white"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                )}
               </div>
             </div>
           );

@@ -52,7 +52,7 @@ export const Home = () => {
                 <h2 className="text-xl font-semibold text-violet-600">
                   Bienvenido de nuevo 👋 {auth.user?.user_name}
                 </h2>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-pretty">
                   Estas son tus tareas diarias, esas mismas que parecen
                   rutinarias…
                 </p>

@@ -20,9 +20,9 @@ interface TasksPageProps {
     descripcion: string;
     actualizado: boolean;
     creado_el: Date | string;
+    hecha: boolean;
   }[];
   deleteTask: (id: number) => void;
-  isTaskDone: boolean;
 }
 
 type PartialUserProps = Partial<UserProps>;
