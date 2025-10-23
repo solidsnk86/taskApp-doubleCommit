@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Loader } from "../components/Layout/Loader";
 import { TaskCard } from "../components/TaskCard";
 import { showDialog } from "../utils/dialog";
@@ -14,6 +14,26 @@ export const TasksPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  const fetchTasks = useCallback(async() => {
+    try {
+      setLoading(true);
+      const res = await fetch("https://e-retro-back.vercel.app/api/tasks", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (!res.ok) throw new Error("Error al obtener las tareas");
+
+      const result = await res.json();
+      setData(result);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  }, [])
+
   useEffect(() => {
     if (authLoading) return;
     if (!auth) {
@@ -21,28 +41,8 @@ export const TasksPage = () => {
       return;
     }
 
-    const fetchTasks = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch("https://e-retro-back.vercel.app/api/tasks", {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        });
-
-        if (!res.ok) throw new Error("Error al obtener las tareas");
-
-        const result = await res.json();
-        setData(result);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchTasks();
-  }, [auth, authLoading, navigate]);
+  }, [auth, authLoading, fetchTasks, navigate]);
 
   const deleteTask = async (id: number) => {
     try {
@@ -170,7 +170,7 @@ export const TasksPage = () => {
         </button>
       </div>
 
-      <TaskCard tareas={data?.tareas} deleteTask={deleteTask} />
+      <TaskCard tareas={data?.tareas} deleteTask={deleteTask} refreshTasks={fetchTasks} />
     </div>
   );
 };

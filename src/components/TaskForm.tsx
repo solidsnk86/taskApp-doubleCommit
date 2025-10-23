@@ -78,8 +78,10 @@ export const TaskForm = () => {
       style={{ viewTransitionName: "page" }}
     >
       <BackButton route="/tasks" />
-      <div className="w-full max-w-md sm:max-w-lg shadow-lg bg-white dark:bg-zinc-900/50 rounded-lg bg-opacity-30 
-                      backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-24">
+      <div
+        className="w-full max-w-md sm:max-w-lg shadow-lg bg-white dark:bg-zinc-900/50 rounded-lg bg-opacity-30 
+                      backdrop-blur-md border border-zinc-200 dark:border-zinc-800 p-8 mt-24"
+      >
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center mb-4">
           Crear Nueva Tarea
         </h2>

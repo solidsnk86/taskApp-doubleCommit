@@ -4,8 +4,8 @@ import { formatDateAndTime } from "../utils/formatDate";
 import { showDialog } from "../utils/dialog";
 import { Loader } from "./Layout/Loader";
 
-export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
-  const [doneTasks, setDoneTasks] = useState<boolean>();
+export const TaskCard = ({ tareas, deleteTask, refreshTasks }: PartialTasksProps) => {
+  const [, setDoneTasks] = useState<boolean>();
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleTaskIsDone = async (id: number | string) => {
@@ -16,9 +16,10 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async(data) => {
         setIsLoading(false)
         setDoneTasks(data.task.hecha);
+        if (refreshTasks) await refreshTasks()  
         showDialog({ content: <div>{data.message}</div> });
       })
       .catch((err) => {showDialog({ content: <div>{err.message}</div> }); setIsLoading(false)});
@@ -32,9 +33,10 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async(data) => {
         setIsLoading(false)
         setDoneTasks(data.task.hecha);
+        if (refreshTasks) await refreshTasks()
         showDialog({ content: <div>{data.message}</div> });
       })
       .catch((err) => {showDialog({ content: <div>{err.message}</div> }); setIsLoading(false)});
@@ -46,7 +48,7 @@ export const TaskCard = ({ tareas, deleteTask }: PartialTasksProps) => {
     <div>
       <ul className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-4 gap-3">
         {tareas?.map((task) => {
-          const isDone = doneTasks;
+          const isDone = task.hecha;
 
           return (
             <div

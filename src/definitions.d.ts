@@ -23,6 +23,7 @@ interface TasksPageProps {
     hecha: boolean;
   }[];
   deleteTask: (id: number) => void;
+  refreshTasks: () => Promise<void>
 }
 
 type PartialUserProps = Partial<UserProps>;
