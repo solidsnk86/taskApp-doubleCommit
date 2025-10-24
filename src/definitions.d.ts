@@ -12,21 +12,23 @@ interface UserProps {
   };
 }
 
-interface TasksPageProps {
+type Task = {
+  task_id?: number;
+  title?: string;
+  description?: string;
+  task_updated?: boolean;
+  created_at?: Date | string;
+  task_done?: boolean;
+};
+
+interface TasksProps {
   message: string;
-  tareas: {
-    tarea_id: number;
-    titulo: string;
-    descripcion: string;
-    actualizado: boolean;
-    creado_el: Date | string;
-    hecha: boolean;
-  }[];
+  tasks: Task[];
   deleteTask: (id: number) => void;
   refreshTasks: () => Promise<void>
 }
 
 type PartialUserProps = Partial<UserProps>;
-type PartialTasksProps = Partial<TasksPageProps>;
+type PartialTasksProps = Partial<TasksProps>;
 
-export { PartialUserProps, PartialTasksProps, UserProps, TasksPageProps };
+export { PartialUserProps, PartialTasksProps, UserProps, TasksProps, Task };

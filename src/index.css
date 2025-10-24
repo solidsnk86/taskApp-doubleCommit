@@ -21,9 +21,10 @@ body {
 }
 
 dialog {
+  border: none;
+  outline: none;
   background: var(--primary-bg-color);
   width: 50%;
-  border: none;
   display: flex;
   justify-content: center;
   margin: auto;

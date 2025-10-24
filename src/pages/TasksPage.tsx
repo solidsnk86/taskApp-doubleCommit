@@ -1,86 +1,37 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Loader } from "../components/Layout/Loader";
 import { TaskCard } from "../components/TaskCard";
-import { showDialog } from "../utils/dialog";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/userProvider";
-import type { PartialTasksProps } from "../definitions";
+import { useTasks } from "../contexts/useProviderTask";
 
 export const TasksPage = () => {
   const navigate = useNavigate();
   const { auth, isLoading: authLoading } = useAuth();
+  const {
+    tasks,
+    getAllTasks,
+    refreshTasks,
+    deleteTask,
+    error,
+    isLoading,
+  } = useTasks();
 
-  const [data, setData] = useState<PartialTasksProps>({ tareas: [] });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  const fetchTasks = useCallback(async() => {
-    try {
-      setLoading(true);
-      const res = await fetch("https://e-retro-back.vercel.app/api/tasks", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-
-      if (!res.ok) throw new Error("Error al obtener las tareas");
-
-      const result = await res.json();
-      setData(result);
-    } catch (err) {
-      setError(err as Error);
-    } finally {
-      setLoading(false);
-    }
-  }, [])
-
+  // 🔹 Cargar tareas cuando el usuario esté autenticado
   useEffect(() => {
     if (authLoading) return;
     if (!auth) {
       navigate("/login");
       return;
     }
+    getAllTasks(); // Llama a la API solo cuando el usuario esté logueado
+  }, [auth, authLoading, navigate, getAllTasks]);
 
-    fetchTasks();
-  }, [auth, authLoading, fetchTasks, navigate]);
+  // 🔹 Loader general (auth + tareas)
+  if (authLoading || isLoading) return <Loader />;
 
-  const deleteTask = async (id: number) => {
-    try {
-      const res = await fetch(
-        `https://e-retro-back.vercel.app/api/delete/task/${id}`,
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        }
-      );
-
-      if (!res.ok) throw new Error("Error al eliminar la tarea");
-
-      const data = await res.json();
-
-      showDialog({
-        content: (
-          <div>
-            <p className="text-rose-400">Se eliminó la tarea: <i className="text-zinc-800 dark:text-zinc-100">{data.tarea.titulo}</i></p>
-          </div>
-        ),
-      });
-
-      setData((prev) => ({
-        ...prev,
-        tareas: prev.tareas?.filter((t) => t.tarea_id !== id),
-      }));
-    } catch (err) {
-      showDialog({ content: <div>{String(err)}</div> });
-    }
-  };
-
-  // Loader general (auth + tareas)
-  if (authLoading || loading) return <Loader />;
-
-  // Error al cargar tareas
-  if (error && !data?.tareas?.length) {
+  // 🔹 Error al cargar tareas
+  if (error && (!tasks || tasks.length === 0)) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <div className="bg-red-50 dark:bg-red-950/30 p-6 rounded-xl shadow-md text-center">
@@ -92,7 +43,7 @@ export const TasksPage = () => {
           </p>
           <button
             onClick={() => navigate("/create-task")}
-            className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition"
+            className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition rounded-md"
           >
             Crear nueva tarea
           </button>
@@ -101,8 +52,8 @@ export const TasksPage = () => {
     );
   }
 
-  // Sin tareas
-  if (data?.tareas?.length === 0) {
+  // 🔹 Sin tareas
+  if (!tasks || tasks.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <div className="flex flex-col text-center">
@@ -116,14 +67,14 @@ export const TasksPage = () => {
             onClick={() => navigate("/create-task")}
             className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition rounded-md"
           >
-            Crea tu primer meta!
+            ¡Crea tu primera meta!
           </button>
         </div>
       </div>
     );
   }
 
-  // Vista principal
+  // 🔹 Vista principal (lista de tareas)
   return (
     <div className="mt-24 p-4">
       <div className="flex justify-between items-center mb-4">
@@ -146,7 +97,7 @@ export const TasksPage = () => {
             <path d="m3 17 2 2 4-4" />
             <path d="m3 7 2 2 4-4" />
           </svg>
-          Lista de Tareas ({data?.tareas?.length})
+          Lista de Tareas ({tasks.length})
         </h1>
         <button
           onClick={() => navigate("/create-task")}
@@ -170,7 +121,12 @@ export const TasksPage = () => {
         </button>
       </div>
 
-      <TaskCard tareas={data?.tareas} deleteTask={deleteTask} refreshTasks={fetchTasks} />
+      {/* 🔹 Renderizado de tareas */}
+      <TaskCard
+        tasks={tasks}
+        deleteTask={deleteTask}
+        refreshTasks={refreshTasks}
+      />
     </div>
   );
 };

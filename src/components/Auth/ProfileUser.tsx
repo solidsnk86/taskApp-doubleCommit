@@ -40,13 +40,14 @@ export const ProfileUser = () => {
             <aside className="flex gap-4 items-center justify-center mt-4">
               <button
                 onClick={handleDeleteUser}
-                className="px-2 py-1 border hover:outline-1 outline-offset-2 outline-rose-600 hover:text-rose-600"
+                disabled={isLoading}
+                className="px-3 py-1.5 border border-rose-500 text-rose-600 dark:text-rose-400 hover:bg-rose-500 hover:text-white rounded-md transition"
               >
-                {isLoading ? "Eliminando..." : "Sí, estoy de acuerdo"}
+                {isLoading ? "Eliminando..." : "Sí, eliminar"}
               </button>
               <button
                 onClick={() => document.querySelector("dialog")?.remove()}
-                className="px-2 py-1 border hover:outline-1 outline-offset-2"
+                className="px-3 py-1.5 border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition"
               >
                 No, me arrepentí
               </button>
@@ -75,6 +76,22 @@ export const ProfileUser = () => {
             }
             alt="User Avatar"
             className="w-28 h-28 rounded-full border-4 border-indigo-400 dark:border-indigo-500/70 shadow-md object-cover transition-transform hover:scale-105"
+            onClick={() => {
+              showDialog({
+                content: (
+                  <div className="p-3">
+                    <img
+                      src={
+                        auth?.user?.user_avatar ||
+                        "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                      }
+                      alt="User Avatar"
+                      className="md:w-full md:h-full w-96 h-96"
+                    />
+                  </div>
+                ),
+              });
+            }}
           />
           <div className="mt-5 sm:mt-0 text-center sm:text-left">
             <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
