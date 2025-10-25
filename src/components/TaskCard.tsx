@@ -9,13 +9,12 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
   const { deleteTask, markDone, markUndone, refreshTasks } = useTasks();
   const [isLoading, setIsLoading] = useState(false);
 
-  // Marcar tarea como hecha ✅
   const handleMarkDone = async (id: number | string, title?: string) => {
     try {
       setIsLoading(true);
       await markDone(id);
       await refreshTasks();
-      showDialog({ content: <div>✅ Tarea "{title}" marcada como completada.</div> });
+      showDialog({ content: <div>✅ Tarea "{title}" marcada como completa.</div> });
     } catch (err) {
       showDialog({ content: <div>Error: {(err as Error).message}</div> });
     } finally {
@@ -23,7 +22,6 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
     }
   };
 
-  // Marcar tarea como no hecha ❌
   const handleMarkUndone = async (id: number | string, title?: string) => {
     try {
       setIsLoading(true);
@@ -37,7 +35,6 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
     }
   };
 
-  // 🗑️ Eliminar tarea con confirmación personalizada
 const handleDelete = (id?: number, title?: string) => {
   if (!id) return;
 

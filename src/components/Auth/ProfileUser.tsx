@@ -86,7 +86,7 @@ export const ProfileUser = () => {
                         "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                       }
                       alt="User Avatar"
-                      className="md:w-full md:h-full w-96 h-96"
+                      className="w-96 h-96 object-cover"
                     />
                   </div>
                 ),
