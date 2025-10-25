@@ -8,12 +8,18 @@ import { convertToBase64 } from "../../utils/convertToBase64";
 export const UpdateForm = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { auth, refreshUser } = useAuth(); // ← Obtener datos del usuario autenticado del contexto
+  const { auth, refreshUser } = useAuth();
+
+  const user = {
+    name: auth?.user?.user_name || "",
+    email: auth?.user?.user_email || "",
+    avatar: auth?.user?.user_avatar || ""
+  }
 
   // Estados inicializados con los datos del contexto
-  const [userName, setUserName] = useState(auth?.user?.user_name || "");
-  const [userEmail, setUserEmail] = useState(auth?.user?.user_email || "");
-  const [userAvatar, setUserAvatar] = useState(auth?.user?.user_avatar || "");
+  const [userName, setUserName] = useState(user.name);
+  const [userEmail, setUserEmail] = useState(user.email);
+  const [userAvatar, setUserAvatar] = useState(user.avatar);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
