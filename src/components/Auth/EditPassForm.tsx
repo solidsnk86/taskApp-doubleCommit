@@ -34,14 +34,14 @@ export const EditPassForm = () => {
         return;
       }
 
-      showDialog({ content: <div className="p-3">{data.message}</div> })
+      showDialog({ content: <div className="p-3">{data.message}</div> });
       setPassword("");
       setNewPassword("");
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
-      setMessage("")
+      setMessage("");
     }
   };
 
@@ -191,8 +191,8 @@ export const EditPassForm = () => {
             disabled={isLoading}
             className={`w-full py-2 transition duration-200 select-none rounded-md border border-zinc-200 dark:border-zinc-800/80 ${
               isLoading
-                ? "dark:bg-zinc-600 cursor-not-allowed"
-                : "bg-zinc-900/60 text-white hover:opacity-80"
+                ? "bg-zinc-400 dark:bg-zinc-600 cursor-not-allowed"
+                : "bg-zinc-800 dark:bg-zinc-900/60 text-white hover:opacity-80"
             }`}
           >
             {isLoading ? "Procesando..." : "Cambiar Contraseña"}
