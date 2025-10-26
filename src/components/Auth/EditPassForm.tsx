@@ -73,7 +73,7 @@ export const EditPassForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-20 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
+              className="mt-1 block w-full p-2 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
             {showPassword ? (
