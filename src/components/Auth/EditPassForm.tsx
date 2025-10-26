@@ -5,13 +5,13 @@ import { Loader } from "../Layout/Loader";
 import { showDialog } from "../../utils/dialog";
 
 export const EditPassForm = () => {
-  const { error, isLoading } = useAuth();
+  const { error: authError, isLoading } = useAuth();
+  const [error, setError] = useState<string>("")
   const [password, setPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(true);
-  const [message, setMessage] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -30,18 +30,16 @@ export const EditPassForm = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        setMessage(data.message);
+        setError(authError?.message as string)
         return;
       }
 
       showDialog({ content: <div className="p-3">{data.message}</div> });
-      setPassword("");
-      setNewPassword("");
+      
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
-      setMessage("");
     }
   };
 
@@ -72,7 +70,10 @@ export const EditPassForm = () => {
               type={showPassword ? "password" : "text"}
               id="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                setError("")
+              }}
               className="mt-1 block w-full p-2 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
@@ -135,7 +136,10 @@ export const EditPassForm = () => {
               type={showNewPassword ? "password" : "text"}
               id="newPassword"
               value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              onChange={(e) => {
+                setNewPassword(e.target.value)
+                setError("")
+              }}
               className="mt-1 block w-full p-2 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 rounded-md"
               required
             />
@@ -200,12 +204,7 @@ export const EditPassForm = () => {
         </form>
 
         {error && (
-          <p className="text-red-500 text-center mt-3">*{error.message}</p>
-        )}
-        {message && (
-          <p className="text-center mt-3 text-sm text-red-500 dark:text-red-400">
-            *{message}
-          </p>
+          <p className="text-red-500 text-center mt-3">*{error}</p>
         )}
       </div>
     </div>

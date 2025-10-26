@@ -218,7 +218,7 @@ export const ProfileUser = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="svg-animation shadow-md"
+              className="svg-animation"
             >
               <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
               <circle cx="12" cy="7" r="4" />
