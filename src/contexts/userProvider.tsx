@@ -30,6 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     try {
       const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
       if (res.status === 404) throw new Error("Sin sesión");
@@ -99,6 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         `https://e-retro-back.vercel.app/api/delete/user/${id}`,
         {
           method: "DELETE",
+          headers: { "Content-Type": "application/json" },
           credentials: "include",
         }
       );
