@@ -218,7 +218,7 @@ export const ProfileUser = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="svg-animation"
+              className="svg-animation shadow-md"
             >
               <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
               <circle cx="12" cy="7" r="4" />
@@ -231,7 +231,7 @@ export const ProfileUser = () => {
           <SignOutButton
             signout={signout}
             isLoading={isLoading}
-            mediaQuerys="flex md:hidden w-full py-2.5"
+            mediaQuerys="flex md:hidden w-full py-2.5 shadow-md"
           />
         </aside>
       </div>
