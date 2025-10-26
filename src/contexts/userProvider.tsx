@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -25,27 +26,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const checkSession = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
-          credentials: "include",
-        });
-        if (res.status === 404) throw new Error("Sin sesión");
-        const data = await res.json();
-        
-        setUser(data);
-      } catch (err) {
-        setIsLoading(false);
-        setUser(null);
-        setError(err as Error);
-      } finally {
-        setIsLoading(false)
-      }
-    };
-    checkSession();
+  const checkSession = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
+        credentials: "include",
+      });
+      if (res.status === 404) throw new Error("Sin sesión");
+      const data = await res.json();
+      
+      setUser(data);
+    } catch (err) {
+      setIsLoading(false);
+      setUser(null);
+      setError(err as Error);
+    } finally {
+      setIsLoading(false)
+    }
   }, []);
+
+  useEffect(() => {
+    checkSession();
+  }, [checkSession]);
 
   const signin = async (email: string, password: string) => {
     setIsLoading(true);
@@ -110,19 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refreshUser = async () => {
-    try {
-      const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Error al obtener usuario actualizado");
-      const data = await res.json();
-      setUser(data);
-    } catch (err) {
-      setError(err as Error)
-      console.error(err);
-    } finally {
-      setIsLoading(false)
-    }
+    await checkSession()
   };
 
   return (
