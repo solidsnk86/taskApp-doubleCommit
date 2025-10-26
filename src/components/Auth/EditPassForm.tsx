@@ -191,8 +191,8 @@ export const EditPassForm = () => {
             disabled={isLoading}
             className={`w-full py-2 transition duration-200 select-none rounded-md border border-zinc-200 dark:border-zinc-800/80 ${
               isLoading
-                ? "bg-zinc-400 dark:bg-zinc-600 cursor-not-allowed"
-                : "bg-zinc-200 dark:bg-zinc-900/60 text-white hover:opacity-80"
+                ? "dark:bg-zinc-600 cursor-not-allowed"
+                : "bg-zinc-900/60 text-white hover:opacity-80"
             }`}
           >
             {isLoading ? "Procesando..." : "Cambiar Contraseña"}
