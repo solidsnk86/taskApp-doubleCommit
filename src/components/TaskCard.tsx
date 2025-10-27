@@ -195,7 +195,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                 <span
                   title={`Editar tarea ${task.title}`}
                   onClick={() => handleEdit(task.task_id as number)}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400 group transition-colors duration-300 cursor-pointer"
+                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-blue-400/80 group transition-colors duration-300 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
