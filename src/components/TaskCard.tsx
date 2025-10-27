@@ -142,10 +142,10 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               {formatDateAndTime(task.created_at as string)}
             </time>
             {task.task_updated ? (
-              <small contentEditable="false" className="text-xs text-zinc-400">
-                Tarea actualizada el{" "}
+              <time contentEditable="false" className="text-sm text-zinc-400">
+                Actualizada el{" "}
                 {formatDateAndTime(task.updated_at as string)}
-              </small>
+              </time>
             ) : null}
 
             <p
