@@ -74,7 +74,7 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
-      showDialog({ content: <div>Se ha actualizado la tarea: <i className="text-emerald-400">{data.title}</i></div> });
+      showDialog({ content: <div className="p-3">Se ha actualizado la tarea: <i className="text-emerald-400">{data.title}</i></div> });
       await getAllTasks();
     } catch (err) {
       setError(err as Error);
@@ -96,7 +96,7 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       if (!res.ok) throw new Error(data.message);
       showDialog({
         content: (
-          <div className="text-center">
+          <div className="text-center p-3">
             🗑️ Tarea <i className="text-rose-600 dark:text-rose-400">“{data.task.title}”</i> eliminada con
             éxito.
           </div>

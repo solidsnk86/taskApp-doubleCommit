@@ -71,6 +71,12 @@ dialog::backdrop {
   }
 }
 
+textarea {
+  resize: none;
+  outline: none;
+  height: 100%;
+}
+
 .welcome-p {
   animation: smoothScaleIn 0.7s ease-out forwards;
 }
