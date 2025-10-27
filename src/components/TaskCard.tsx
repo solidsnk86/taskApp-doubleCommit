@@ -15,6 +15,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
     isLoading,
   } = useTasks();
   const [editMode, setEditMode] = useState<number | null>(null);
+  const [showOtions, setShowOptions] = useState<boolean>(false);
 
   const handleMarkDone = async (id: number | string, title?: string) => {
     try {
@@ -111,6 +112,8 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
     });
   };
 
+  const handleShowOptions = () => setShowOptions((value) => !value);
+
   if (isLoading) return <Loader />;
 
   return (
@@ -139,7 +142,10 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               {formatDateAndTime(task.created_at as string)}
             </time>
             {task.task_updated ? (
-              <small contentEditable="false" className="text-xs text-zinc-400">Tarea actualizada el {formatDateAndTime(task.updated_at as string)}</small>
+              <small contentEditable="false" className="text-xs text-zinc-400">
+                Tarea actualizada el{" "}
+                {formatDateAndTime(task.updated_at as string)}
+              </small>
             ) : null}
 
             <p
@@ -151,13 +157,11 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               {task.description}
             </p>
 
-            {/* 🖊 Editar tarea */}
-            <div className="absolute top-2 right-2 p-2 flex gap-3">
-              <span
-                title={`Editar tarea ${task.title}`}
-                onClick={() => handleEdit(task.task_id as number)}
-                className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400 group transition-colors duration-300 cursor-pointer"
-              >
+            <div
+              className="absolute top-2 right-2 text-indigo-400 cursor-pointer w-fit"
+              onClick={handleShowOptions}
+            >
+              <span className="flex p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400/50 group transition-colors duration-300 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={20}
@@ -168,65 +172,53 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="lucide lucide-pencil-icon lucide-pencil"
+                  className="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"
                 >
-                  <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-                  <path d="m15 5 4 4" />
+                  {!showOtions ? (
+                    <>
+                      <circle cx={12} cy={12} r={1} />
+                      <circle cx={12} cy={5} r={1} />
+                      <circle cx={12} cy={19} r={1} />
+                    </>
+                  ) : (
+                    <>
+                      <path d="M3 5v14" />
+                      <path d="M21 12H7" />
+                      <path d="m15 18 6-6-6-6" />
+                    </>
+                  )}
                 </svg>
               </span>
-
-              {/* 🗑 Eliminar tarea */}
-              <span
-                title={`Eliminar tarea ${task.title}`}
-                onClick={() => handleDelete(task.task_id, task.title)}
-                className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-rose-400 group transition-colors duration-300 cursor-pointer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-trash group-hover:text-zinc-100"
-                >
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-                  <path d="M3 6h18" />
-                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                </svg>
-              </span>
-
-              {/* 🔁 Marcar como hecha o deshecha */}
-              {isDone ? (
+            </div>
+            {showOtions && (
+              <div className="absolute top-0 right-11 p-2 flex gap-3">
                 <span
-                  onClick={() => handleMarkUndone(task.task_id!, task.title)}
-                  title={`Deshacer tarea ${task.title}`}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-orange-300 group transition-colors duration-300 cursor-pointer"
+                  title={`Editar tarea ${task.title}`}
+                  onClick={() => handleEdit(task.task_id as number)}
+                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400 group transition-colors duration-300 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={24}
-                    height={24}
+                    width={20}
+                    height={20}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="lucide lucide-undo group-hover:stroke-white"
+                    className="lucide lucide-pencil-icon lucide-pencil"
                   >
-                    <path d="M3 7v6h6" />
-                    <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+                    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+                    <path d="m15 5 4 4" />
                   </svg>
                 </span>
-              ) : (
+
+                {/* 🗑 Eliminar tarea */}
                 <span
-                  onClick={() => handleMarkDone(task.task_id!, task.title)}
-                  title={`Marcar tarea ${task.title} como hecha`}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 cursor-pointer"
+                  title={`Eliminar tarea ${task.title}`}
+                  onClick={() => handleDelete(task.task_id, task.title)}
+                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-rose-400 group transition-colors duration-300 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -235,16 +227,64 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth={2}
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="lucide lucide-check group-hover:stroke-white"
+                    className="lucide lucide-trash group-hover:text-zinc-100"
                   >
-                    <path d="M20 6 9 17l-5-5" />
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                    <path d="M3 6h18" />
+                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                   </svg>
                 </span>
-              )}
-            </div>
+
+                {/* 🔁 Marcar como hecha o pendiente */}
+                {isDone ? (
+                  <span
+                    onClick={() => handleMarkUndone(task.task_id!, task.title)}
+                    title={`Deshacer tarea ${task.title}`}
+                    className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-orange-300 group transition-colors duration-300 cursor-pointer"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-undo group-hover:stroke-white"
+                    >
+                      <path d="M3 7v6h6" />
+                      <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => handleMarkDone(task.task_id!, task.title)}
+                    title={`Marcar tarea ${task.title} como hecha`}
+                    className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 cursor-pointer"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-check group-hover:stroke-white"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                )}
+              </div>
+            )}
             {editMode === task.task_id && (
               <div className="flex gap-2 items-center mt-2 select-none">
                 <button
