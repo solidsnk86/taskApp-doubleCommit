@@ -15,7 +15,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
     isLoading,
   } = useTasks();
   const [editMode, setEditMode] = useState<number | null>(null);
-  const [showOtions, setShowOptions] = useState<boolean>(false);
+  const [showOtions, setShowOptions] = useState<number | null>(null);
 
   const handleMarkDone = async (id: number | string, title?: string) => {
     try {
@@ -112,7 +112,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
     });
   };
 
-  const handleShowOptions = () => setShowOptions((value) => !value);
+  const handleShowOptions = (id: number) => setShowOptions(id);
 
   if (isLoading) return <Loader />;
 
@@ -157,40 +157,53 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               {task.description}
             </p>
 
-            <div
-              className="absolute top-2 right-2 cursor-pointer w-fit"
-              onClick={handleShowOptions}
-            >
-              <span className="flex p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400/80 group transition-colors duration-300 cursor-pointer">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"
-                >
-                  {!showOtions ? (
-                    <>
-                      <circle cx={12} cy={12} r={1} />
-                      <circle cx={12} cy={5} r={1} />
-                      <circle cx={12} cy={19} r={1} />
-                    </>
-                  ) : (
-                    <>
+            <div className="absolute top-2 right-2 cursor-pointer w-fit">
+              <span
+                onClick={() => handleShowOptions(task.task_id as number)}
+                className="flex p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400/80 group transition-colors duration-300 cursor-pointer"
+              >
+                {showOtions !== task.task_id ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"
+                  >
+                    <circle cx={12} cy={12} r={1} />
+                    <circle cx={12} cy={5} r={1} />
+                    <circle cx={12} cy={19} r={1} />
+                  </svg>
+                ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={20}
+                      height={20}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-arrow-right-from-line-icon lucide-arrow-right-from-line z-50"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setShowOptions(null)
+                      }}
+                    >
                       <path d="M3 5v14" />
                       <path d="M21 12H7" />
                       <path d="m15 18 6-6-6-6" />
-                    </>
-                  )}
-                </svg>
+                    </svg>
+                )}
               </span>
             </div>
-            {showOtions && (
+            {showOtions === task.task_id && (
               <div className="absolute top-0 right-11 p-2 flex gap-3 backdrop-blur-lg rounded-l-md">
                 <span
                   title={`Editar tarea ${task.title}`}
