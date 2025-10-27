@@ -138,6 +138,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
           >
             <h3
               contentEditable={editMode === task.task_id}
+              style={{ outline: editMode === task.task_id ? "1px solid oklch(67.3% 0.182 276.935)" : "" }}
               className={`text-xl font-bold transition-all duration-300 w-64 ${
                 isDone ? "line-through text-zinc-400" : ""
               }`}
@@ -156,6 +157,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
 
             <p
               contentEditable={editMode === task.task_id}
+              style={{ outline: editMode === task.task_id ? "1px solid oklch(67.3% 0.182 276.935)" : "" }}
               className={`mt-3 transition-all duration-300 ${
                 isDone ? "line-through text-zinc-400" : ""
               }`}
