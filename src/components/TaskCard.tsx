@@ -288,13 +288,13 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
             {editMode === task.task_id && (
               <div className="flex gap-2 items-center mt-2 select-none">
                 <button
-                  className="px-2 btn-animation py-1 font-semibold bg-indigo-500 text-white text-sm rounded-md hover:brightness-110 flex gap-1 items-center"
+                  className="px-2 btn-animation py-1 font-semibold bg-blue-600 border border-blue-500 shadow-sm hover:bg-blue-700 text-white text-sm rounded-md hover:brightness-110 flex gap-1 items-center"
                   onClick={() => handleUpdate(task.task_id as number)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={24}
-                    height={24}
+                    width={20}
+                    height={20}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -311,7 +311,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                 </button>
                 <button
                   onClick={() => setEditMode(null)}
-                  className="rounded-md gap-2 px-2 py-1 bg-zinc-800 text-white shadow-sm hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition"
+                  className="rounded-md px-2 py-1 bg-zinc-800 text-white shadow-sm hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition"
                 >
                   Cancelar
                 </button>
