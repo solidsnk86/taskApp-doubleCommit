@@ -9,7 +9,7 @@ interface TaskContextType {
   error: Error | null;
   getAllTasks: () => Promise<void>;
   createTask: (task: Task) => Promise<void>;
-  updateTask: (id: number) => Promise<void>;
+  updateTask: (id: number, title: string, description: string) => Promise<void>;
   deleteTask: (id: number) => Promise<void>;
   refreshTasks: () => Promise<void>;
   markDone: (id: number | string) => Promise<void>;
@@ -63,16 +63,18 @@ export function TaskProvider({ children }: { children: ReactNode }) {
   }, [getAllTasks]);
 
   // 🔹 UPDATE TASK
-  const updateTask = useCallback(async (id: number) => {
+  const updateTask = useCallback(async (id: number, title: string, description: string) => {
     try {
       setIsloading(true);
       const res = await fetch("https://e-retro-back.vercel.app/api/update/task/" + id, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
+        body: JSON.stringify({ title, description })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
+      showDialog({ content: <div>Se ha actualizado la tarea: <i className="text-emerald-400">{data.title}</i></div> });
       await getAllTasks();
     } catch (err) {
       setError(err as Error);
@@ -92,7 +94,14 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
-      showDialog({ content: <div className="text-rose-400">Tarea eliminada: <i>{data.title}</i></div> });
+      showDialog({
+        content: (
+          <div className="text-center text-green-600 dark:text-green-400">
+            🗑️ Tarea <strong>“{data.task.title}”</strong> eliminada con
+            éxito.
+          </div>
+        ),
+      });
       await getAllTasks();
     } catch (err) {
       setError(err as Error);

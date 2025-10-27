@@ -17,6 +17,7 @@ type Task = {
   title?: string;
   description?: string;
   task_updated?: boolean;
+  updated_at?: Date | string; 
   created_at?: Date | string;
   task_done?: boolean;
 };
@@ -25,7 +26,8 @@ interface TasksProps {
   message: string;
   tasks: Task[];
   deleteTask: (id: number) => void;
-  refreshTasks: () => Promise<void>
+  refreshTasks: () => Promise<void>;
+  editTask: (id: number) => Promise<void>;
 }
 
 type PartialUserProps = Partial<UserProps>;
