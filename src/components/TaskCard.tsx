@@ -158,10 +158,10 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
             </p>
 
             <div
-              className="absolute top-2 right-2 text-indigo-400 cursor-pointer w-fit"
+              className="absolute top-2 right-2 cursor-pointer w-fit"
               onClick={handleShowOptions}
             >
-              <span className="flex p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400/50 group transition-colors duration-300 cursor-pointer">
+              <span className="flex p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400/80 group transition-colors duration-300 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={20}
@@ -191,7 +191,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               </span>
             </div>
             {showOtions && (
-              <div className="absolute top-0 right-11 p-2 flex gap-3">
+              <div className="absolute top-0 right-11 p-2 flex gap-3 backdrop-blur-lg rounded-l-md">
                 <span
                   title={`Editar tarea ${task.title}`}
                   onClick={() => handleEdit(task.task_id as number)}
@@ -218,7 +218,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                 <span
                   title={`Eliminar tarea ${task.title}`}
                   onClick={() => handleDelete(task.task_id, task.title)}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-rose-400 group transition-colors duration-300 cursor-pointer"
+                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-rose-400/80 group transition-colors duration-300 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +243,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                   <span
                     onClick={() => handleMarkUndone(task.task_id!, task.title)}
                     title={`Deshacer tarea ${task.title}`}
-                    className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-orange-300 group transition-colors duration-300 cursor-pointer"
+                    className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-orange-300/80 group transition-colors duration-300 cursor-pointer"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +265,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                   <span
                     onClick={() => handleMarkDone(task.task_id!, task.title)}
                     title={`Marcar tarea ${task.title} como hecha`}
-                    className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400 group transition-colors duration-300 cursor-pointer"
+                    className="p-1.5 btn-animation border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400/80 group transition-colors duration-300 cursor-pointer"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +277,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="lucide lucide-check group-hover:stroke-white"
+                      className="lucide lucide-check group-hover:stroke-white svg-animation"
                     >
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
