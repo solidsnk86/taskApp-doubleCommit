@@ -24,7 +24,7 @@ export const OptionsButton = ({ show, id, handler, setter }: ButtonProps) => {
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"
+          className="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical group-hover:text-zinc-100"
         >
           <circle cx={12} cy={12} r={1} />
           <circle cx={12} cy={5} r={1} />
@@ -41,7 +41,7 @@ export const OptionsButton = ({ show, id, handler, setter }: ButtonProps) => {
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-arrow-right-from-line-icon lucide-arrow-right-from-line z-50"
+          className="lucide lucide-arrow-right-from-line-icon lucide-arrow-right-from-line z-50 group-hover:text-zinc-100"
           onClick={(e) => {
             e.stopPropagation();
             setter(null);

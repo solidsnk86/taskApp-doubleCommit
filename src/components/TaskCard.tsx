@@ -163,7 +163,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               {task.description}
             </p>
 
-            <div className="absolute top-2 right-2 cursor-pointer w-fit">
+            <div className="absolute top-2 right-2 cursor-pointer w-fit text-zinc-600 dark:text-zinc-400">
               <OptionsButton
                 id={task.task_id!}
                 show={showOtions}
@@ -172,7 +172,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               />
             </div>
             {showOtions === task.task_id && (
-              <div className="absolute top-0 right-11 p-2 flex gap-3 backdrop-blur-lg rounded-l-md">
+              <div className="absolute top-0 right-11 p-2 flex gap-3 backdrop-blur-sm rounded-l-md text-zinc-600 dark:text-zinc-400">
                 <EditButton
                   title={task.title!}
                   handler={() => handleEdit(task.task_id!)}
