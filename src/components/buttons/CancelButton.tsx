@@ -1,20 +1,20 @@
 import type { CSSProperties } from "react";
 
-interface ButtonsProps {
+interface ButtonProps {
   className?: string;
   style?: CSSProperties;
-  handler: () => Promise<void>;
+  handler: () => void;
 }
 
-export const SaveButton = ({ handler, className, style }: ButtonsProps) => {
+export const CancelButton = ({ handler, style, className }: ButtonProps) => {
   return (
     <button
-      style={style}
+    style={style}
       onClick={handler}
-      className={`${className} flex gap-1 btn-animation font-semibold bg-blue-600 border border-blue-500 
-      shadow-sm hover:bg-blue-700 text-white text-sm rounded-md hover:brightness-110`}
+      className={`${className} flex gap-1 items-center rounded-md bg-zinc-800 text-white text-sm font-semibold shadow-sm hover:bg-zinc-900 
+        dark:bg-zinc-700 dark:hover:bg-zinc-600 transition`}
     >
-      <svg
+        <svg
         xmlns="http://www.w3.org/2000/svg"
         width={20}
         height={20}
@@ -30,7 +30,7 @@ export const SaveButton = ({ handler, className, style }: ButtonsProps) => {
         <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
         <path d="M7 3v4a1 1 0 0 0 1 1h7" />
       </svg>
-      Guardar
+      Cancelar
     </button>
   );
 };

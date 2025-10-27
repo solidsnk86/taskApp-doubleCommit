@@ -5,7 +5,12 @@ import { Loader } from "./Layout/Loader";
 import { useTasks } from "../contexts/useProviderTask";
 import type { PartialTasksProps } from "../definitions";
 import { SaveButton } from "./buttons/SaveButton";
-import { CancelButton } from "./buttons/CancelButtons";
+import { CancelButton } from "./buttons/CancelButton";
+import { DoneButton } from "./buttons/DoneButton";
+import { UndoneButton } from "./buttons/UndoneButton";
+import { OptionsButton } from "./buttons/OptionsButton";
+import { EditButton } from "./buttons/EditButton";
+import { DeleteButton } from "./buttons/DeleteButton";
 
 export const TaskCard = ({ tasks }: PartialTasksProps) => {
   const {
@@ -145,8 +150,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
             </time>
             {task.task_updated ? (
               <time contentEditable="false" className="text-sm text-zinc-400">
-                Actualizada el{" "}
-                {formatDateAndTime(task.updated_at as string)}
+                Actualizada el {formatDateAndTime(task.updated_at as string)}
               </time>
             ) : null}
 
@@ -160,150 +164,50 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
             </p>
 
             <div className="absolute top-2 right-2 cursor-pointer w-fit">
-              <span
-                onClick={() => handleShowOptions(task.task_id as number)}
-                className="flex p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-indigo-400/80 group transition-colors duration-300 cursor-pointer"
-              >
-                {showOtions !== task.task_id ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"
-                  >
-                    <circle cx={12} cy={12} r={1} />
-                    <circle cx={12} cy={5} r={1} />
-                    <circle cx={12} cy={19} r={1} />
-                  </svg>
-                ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={20}
-                      height={20}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-arrow-right-from-line-icon lucide-arrow-right-from-line z-50"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setShowOptions(null)
-                      }}
-                    >
-                      <path d="M3 5v14" />
-                      <path d="M21 12H7" />
-                      <path d="m15 18 6-6-6-6" />
-                    </svg>
-                )}
-              </span>
+              <OptionsButton
+                id={task.task_id!}
+                show={showOtions}
+                handler={() => handleShowOptions(task.task_id as number)}
+                setter={setShowOptions}
+              />
             </div>
             {showOtions === task.task_id && (
               <div className="absolute top-0 right-11 p-2 flex gap-3 backdrop-blur-lg rounded-l-md">
-                <span
-                  title={`Editar tarea ${task.title}`}
-                  onClick={() => handleEdit(task.task_id as number)}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-blue-400/80 group transition-colors duration-300 cursor-pointer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-pencil-icon lucide-pencil"
-                  >
-                    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-                    <path d="m15 5 4 4" />
-                  </svg>
-                </span>
+                <EditButton
+                  title={task.title!}
+                  handler={() => handleEdit(task.task_id!)}
+                />
 
                 {/* 🗑 Eliminar tarea */}
-                <span
-                  title={`Eliminar tarea ${task.title}`}
-                  onClick={() => handleDelete(task.task_id, task.title)}
-                  className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-rose-400/80 group transition-colors duration-300 cursor-pointer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-trash group-hover:text-zinc-100"
-                  >
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-                    <path d="M3 6h18" />
-                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                  </svg>
-                </span>
+                <DeleteButton
+                  title={task.title!}
+                  handler={() => handleDelete(task.task_id!, task.title)}
+                />
 
                 {/* 🔁 Marcar como hecha o pendiente */}
                 {isDone ? (
-                  <span
-                    onClick={() => handleMarkUndone(task.task_id!, task.title)}
-                    title={`Deshacer tarea ${task.title}`}
-                    className="p-1.5 border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-orange-300/80 group transition-colors duration-300 cursor-pointer"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-undo group-hover:stroke-white"
-                    >
-                      <path d="M3 7v6h6" />
-                      <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
-                    </svg>
-                  </span>
+                  <UndoneButton
+                    title={task.title!}
+                    handler={() => handleMarkUndone(task.task_id!, task.title)}
+                  />
                 ) : (
-                  <span
-                    onClick={() => handleMarkDone(task.task_id!, task.title)}
-                    title={`Marcar tarea ${task.title} como hecha`}
-                    className="p-1.5 btn-animation border border-zinc-200 dark:border-zinc-800/50 rounded-lg hover:bg-lime-400/80 group transition-colors duration-300 cursor-pointer"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-check group-hover:stroke-white svg-animation"
-                    >
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                  </span>
+                  <DoneButton
+                    title={task.title!}
+                    handler={() => handleMarkDone(task.task_id!, task.title)}
+                  />
                 )}
               </div>
             )}
             {editMode === task.task_id && (
               <div className="flex gap-2 items-center mt-2 select-none">
-                <SaveButton handler={() => handleUpdate(task.task_id as number)} />
-                <CancelButton handler={() => setEditMode(null)} />
+                <SaveButton
+                  handler={() => handleUpdate(task.task_id as number)}
+                  className="px-2 py-1"
+                />
+                <CancelButton
+                  handler={() => setEditMode(null)}
+                  className="px-2 py-1"
+                />
               </div>
             )}
           </div>

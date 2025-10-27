@@ -151,6 +151,38 @@ dialog::backdrop {
   }
 }
 
+#done-btn {
+  animation: popUp 0.2s ease-in-out forwards;
+}
+#undone-btn {
+  animation: popUp 0.2s ease-in-out forwards;
+}
+#delete-btn {
+  animation: popUp 0.4s ease-in-out forwards;
+}
+#edit-btn {
+  animation: popUp 0.6s ease-in-out forwards;
+}
+
+
+@keyframes popUp {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+@keyframes popOut {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0;
+  }
+}
+
 @media (width <= 762px) {
   dialog {
     width: 90%;

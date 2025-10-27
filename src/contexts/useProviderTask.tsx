@@ -96,8 +96,8 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       if (!res.ok) throw new Error(data.message);
       showDialog({
         content: (
-          <div className="text-center text-green-600 dark:text-green-400">
-            🗑️ Tarea <strong>“{data.task.title}”</strong> eliminada con
+          <div className="text-center">
+            🗑️ Tarea <i className="text-rose-600 dark:text-rose-400">“{data.task.title}”</i> eliminada con
             éxito.
           </div>
         ),
