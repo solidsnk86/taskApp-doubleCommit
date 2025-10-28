@@ -4,6 +4,7 @@ import { BackButton } from "../BackButton";
 import { useNavigate } from "react-router-dom";
 import type { PartialUserProps } from "../../definitions";
 import { useAuth } from "../../contexts/userProvider";
+import { getLocation } from "../../utils/getLocation";
 
 export const RegisterForm = () => {
   const { refreshUser } = useAuth();
@@ -18,13 +19,15 @@ export const RegisterForm = () => {
     try {
       e.preventDefault();
       setIsLoading(true);
+
+      const { ip, city, country } = await getLocation()
       const response = await fetch(
         "https://e-retro-back.vercel.app/api/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({ name, email, password, ip, city, country }),
         }
       );
       const data: PartialUserProps = await response.json();
@@ -33,7 +36,7 @@ export const RegisterForm = () => {
         showDialog({ content: <div className="p-5">{data.message}</div> });
         return;
       }
-      
+      setIsLoading(false)
       showDialog({
         content: (
           <div className="p-5">
