@@ -20,14 +20,14 @@ export const RegisterForm = () => {
       e.preventDefault();
       setIsLoading(true);
 
-      const { ip, city, country } = await getLocation()
+      const { ip, city, country, state } = await getLocation()
       const response = await fetch(
         "https://e-retro-back.vercel.app/api/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify({ name, email, password, ip, city, country }),
+          body: JSON.stringify({ name, email, password, ip, city, country, state }),
         }
       );
       const data: PartialUserProps = await response.json();

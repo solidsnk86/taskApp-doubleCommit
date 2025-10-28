@@ -9,22 +9,25 @@ interface UserProps {
     user_password: string;
     user_avatar: string;
     updated_at: Date | string;
+    ip: string;
+    city: string;
+    country: string
   };
 }
 
 type Task = {
-  task_id?: number;
-  title?: string;
-  description?: string;
-  task_updated?: boolean;
-  updated_at?: Date | string; 
-  created_at?: Date | string;
-  task_done?: boolean;
+  task_id: number;
+  title: string;
+  description: string;
+  task_updated: boolean;
+  updated_at: Date | string; 
+  created_at: Date | string;
+  task_done: boolean;
 };
 
 interface TasksProps {
   message: string;
-  tasks: Task[];
+  tasks: Partial<Task[]>;
   deleteTask: (id: number) => void;
   refreshTasks: () => Promise<void>;
   editTask: (id: number) => Promise<void>;

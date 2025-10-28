@@ -1,7 +1,7 @@
 interface LocationProps {
   ip: string;
   city: { name: string };
-  country: { name: string };
+  country: { name: string, timezone: string };
 }
 
 export const getLocation = async () => {
@@ -10,5 +10,7 @@ export const getLocation = async () => {
   );
   const location: LocationProps = await locationResponse.json();
   const { ip, city, country } = location;
-  return { ip, city: city.name, country: country.name };
+  const timezone = country.timezone
+  const state = timezone.replace(/^([^/]+\/){2}/, "");
+  return { ip, city: city.name, country: country.name, state  };
 };
