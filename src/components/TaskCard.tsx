@@ -139,26 +139,26 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
             <h3
               contentEditable={editMode === task.task_id}
               style={{ outline: editMode === task.task_id ? "1px solid oklch(67.3% 0.182 276.935)" : "" }}
-              className={`text-xl font-bold transition-all duration-300 w-64 ${
+              className={`text-xl font-bold transition-all duration-300 w-64 p-0.5 ${
                 isDone ? "line-through text-zinc-400" : ""
               }`}
             >
               {task.title}
             </h3>
 
-            <time className="text-sm text-zinc-400" contentEditable="false">
+            <time className="text-sm text-zinc-400 pl-0.5" contentEditable="false">
               {formatDateAndTime(task.created_at as string)}
             </time>
             {task.task_updated ? (
-              <time contentEditable="false" className="text-sm text-zinc-400">
+              <time contentEditable="false" className="text-sm text-zinc-400 pl-0.5">
                 Actualizada el {formatDateAndTime(task.updated_at as string)}
               </time>
             ) : null}
 
             <p
               contentEditable={editMode === task.task_id}
-              style={{ outline: editMode === task.task_id ? "1px solid oklch(67.3% 0.182 276.935)" : "" }}
-              className={`mt-3 transition-all duration-300 ${
+              style={{ outline: editMode === task.task_id ? "2px solid oklch(67.3% 0.182 276.935)" : "" }}
+              className={`mt-3 transition-all duration-300 p-0.5 ${
                 isDone ? "line-through text-zinc-400" : ""
               }`}
             >

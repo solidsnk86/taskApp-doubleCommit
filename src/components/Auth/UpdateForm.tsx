@@ -264,7 +264,7 @@ export const UpdateForm = () => {
           <aside className="flex justify-center gap-3 mt-4">
             <button
               type="submit"
-              className="flex btn-animation items-center rounded-md gap-2 px-5 py-2.5 border text-ambe border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-green-700 transition"
+              className="flex btn-animation items-center rounded-md gap-2 px-5 py-2.5 border text-ambe border-zinc-200 dark:border-zinc-800 dark:text-white text-zinc-800 shadow-sm hover:text-white hover:bg-blue-600 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
