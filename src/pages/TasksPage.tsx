@@ -112,7 +112,7 @@ export const TasksPage = () => {
           Ordenar por:
           <select
             onChange={handleSelectOrder}
-            className="px-2.5 py-2 rounded bg-zinc-100 text-zinc-800"
+            className="px-2.5 py-2 rounded-md bg-white dark:bg-zinc-200 text-zinc-800 border border-zinc-200"
           >
             <option value="asc">Fecha Ascendente</option>
             <option value="desc">Fecha Descendente</option>
