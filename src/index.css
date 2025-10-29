@@ -89,6 +89,11 @@ textarea {
   animation: smoothScaleIn 1.6s forwards;
 }
 
+.avatars-reflection {
+  -webkit-box-reflect: below -12px linear-gradient(transparent, #00000009, rgb(0
+          0 0 / 18%));
+}
+
 @keyframes slide-in-stack {
   0% {
     transform: translateX(-50px) scale(0.8);
