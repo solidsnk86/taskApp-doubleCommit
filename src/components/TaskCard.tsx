@@ -125,7 +125,8 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
 
   return (
     <ul className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-4 gap-3">
-      {tasks?.map((task) => {
+      {tasks?.sort((a, b) =>  new Date(b.created_at as string).getSeconds() - new Date(a.created_at as string).getSeconds())
+      ?.map((task) => {
         const isDone = task.task_done;
 
         return (
