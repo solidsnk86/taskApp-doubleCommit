@@ -91,7 +91,7 @@ export const Home = () => {
       <div className="mt-10">
         <button
           onClick={() => navigate("/tasks")}
-          className="welcome-btn px-6 py-3 sm:px-8 sm:py-4 bg-blue-600 text-white font-semibold text-base sm:text-lg hover:bg-blue-700 transition transform hover:scale-105 hover:shadow-blue-600/50 shadow-2xl rounded-xl border border-blue-500 hover:border-blue-600"
+          className="welcome-btn px-5 py-2 md:px-6 md:py-3 bg-blue-600 text-white font-semibold text-base sm:text-lg hover:bg-blue-700 transition transform hover:scale-105 hover:shadow-blue-600/50 shadow-2xl rounded-xl border border-blue-500 hover:border-blue-600"
         >
           Comenzar ahora
         </button>
