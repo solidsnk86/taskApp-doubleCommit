@@ -109,7 +109,7 @@ export const TasksPage = () => {
       </h1>
       <div className="flex justify-between items-center px-1.5">
         <label className="flex gap-2 items-center text-zinc-800 dark:text-white">
-          <span className="md:flex hidden">Ordenar por fecha:</span>
+          Fecha:
           <select
             onChange={handleSelectOrder}
             className="px-2.5 py-1 rounded bg-zinc-100 text-zinc-800"
