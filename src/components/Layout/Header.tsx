@@ -14,7 +14,7 @@ export const Header = () => {
           onClick={() => navigate("/")}
           className="flex items-center gap-1 cursor-pointer hover:scale-105 transition-transform duration-500"
         >
-          <img src="/logo-doubleCommit-taskApp.png" width={33} height={33} loading="eager" alt="Logo" />
+          <img src="/logo-doubleCommit-taskApp.png" width={40} height={40} loading="eager" alt="Logo" />
           <span className="font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] hidden md:flex">
             doubleCommit taskApp
           </span>
@@ -47,7 +47,7 @@ export const Header = () => {
         ) : (
           <button
             onClick={() => navigate("/login")}
-            className="flex items-center gap-2 md:px-5 md:py-2 px-4 py-1.5 rounded-lg bg-blue-600 border border-blue-400 text-white hover:bg-blue-700 transition group relative active:outline outline-blue-500 outline-offset-2 z-50"
+            className="flex items-center gap-2 md:px-5 md:py-2 px-4 py-1.5 rounded-md bg-blue-600 border border-blue-400 text-white hover:bg-blue-700 transition group relative active:outline outline-blue-500 outline-offset-2 z-50"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
