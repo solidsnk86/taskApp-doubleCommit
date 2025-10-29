@@ -11,7 +11,7 @@ export const TasksPage = () => {
   const { auth, isLoading: authLoading } = useAuth();
   const { tasks, getAllTasks, refreshTasks, deleteTask, error, isLoading } =
     useTasks();
-  const [orderBy, setOrfderBy] = useState<string>();
+  const [orderBy, setOrderBy] = useState<string>();
 
   // Cargar tareas cuando el usuario esté autenticado
   useEffect(() => {
@@ -80,12 +80,12 @@ export const TasksPage = () => {
   };
 
   const handleSelectOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setOrfderBy(e.target.value);
+    setOrderBy(e.target.value);
   };
 
   // Vista principal (lista de tareas)
   return (
-    <div className="mt-24 p-4">
+    <div className="mt-24 p-4 space-y-3">
       <h1 className="text-2xl font-bold flex items-center gap-2.5 text-zinc-800 dark:text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ export const TasksPage = () => {
         </svg>
         Lista de Tareas ({tasks.length})
       </h1>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center px-1.5">
         <label className="flex gap-2 items-center text-zinc-800 dark:text-white">
           <span className="md:flex hidden">Ordenar por fecha:</span>
           <select
