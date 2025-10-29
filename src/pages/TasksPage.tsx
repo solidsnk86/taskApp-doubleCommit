@@ -1,23 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Loader } from "../components/Layout/Loader";
 import { TaskCard } from "../components/TaskCard";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/userProvider";
 import { useTasks } from "../contexts/useProviderTask";
+import type { Task } from "../definitions";
 
 export const TasksPage = () => {
   const navigate = useNavigate();
   const { auth, isLoading: authLoading } = useAuth();
-  const {
-    tasks,
-    getAllTasks,
-    refreshTasks,
-    deleteTask,
-    error,
-    isLoading,
-  } = useTasks();
+  const { tasks, getAllTasks, refreshTasks, deleteTask, error, isLoading } =
+    useTasks();
+  const [orderBy, setOrfderBy] = useState<string>();
 
-  // 🔹 Cargar tareas cuando el usuario esté autenticado
+  // Cargar tareas cuando el usuario esté autenticado
   useEffect(() => {
     if (authLoading) return;
     if (!auth) {
@@ -27,10 +23,10 @@ export const TasksPage = () => {
     getAllTasks(); // Llama a la API solo cuando el usuario esté logueado
   }, [auth, authLoading, navigate, getAllTasks]);
 
-  // 🔹 Loader general (auth + tareas)
+  // Loader general (auth + tareas)
   if (authLoading || isLoading) return <Loader />;
 
-  // 🔹 Error al cargar tareas
+  // Error al cargar tareas
   if (error && (!tasks || tasks.length === 0)) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
@@ -52,7 +48,7 @@ export const TasksPage = () => {
     );
   }
 
-  // 🔹 Sin tareas
+  // Sin tareas
   if (!tasks || tasks.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
@@ -74,31 +70,54 @@ export const TasksPage = () => {
     );
   }
 
-  // 🔹 Vista principal (lista de tareas)
+  const sortTaskByDate = (tasks: Task[]) => {
+    return [...tasks].sort((a, b) => {
+      const timeA = new Date(a.created_at as string).getTime();
+      const timeB = new Date(b.created_at as string).getTime();
+
+      return orderBy === "desc" ? timeB - timeA : timeA - timeB;
+    });
+  };
+
+  const handleSelectOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setOrfderBy(e.target.value);
+  };
+
+  // Vista principal (lista de tareas)
   return (
     <div className="mt-24 p-4">
+      <h1 className="text-2xl font-bold flex items-center gap-2.5 text-zinc-800 dark:text-white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={28}
+          height={28}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#4f39f6"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-list-checks-icon lucide-list-checks"
+        >
+          <path d="M13 5h8" />
+          <path d="M13 12h8" />
+          <path d="M13 19h8" />
+          <path d="m3 17 2 2 4-4" />
+          <path d="m3 7 2 2 4-4" />
+        </svg>
+        Lista de Tareas ({tasks.length})
+      </h1>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold flex items-center gap-2.5 text-zinc-800 dark:text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={28}
-            height={28}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#4f39f6"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-list-checks-icon lucide-list-checks"
+        <label className="flex gap-2 items-center text-zinc-800 dark:text-white">
+          <span className="md:flex hidden">Ordenar por fecha:</span>
+          <select
+            onChange={handleSelectOrder}
+            className="px-2.5 py-1 rounded bg-zinc-100 text-zinc-800"
           >
-            <path d="M13 5h8" />
-            <path d="M13 12h8" />
-            <path d="M13 19h8" />
-            <path d="m3 17 2 2 4-4" />
-            <path d="m3 7 2 2 4-4" />
-          </svg>
-          Lista de Tareas ({tasks.length})
-        </h1>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
+        </label>
         <button
           onClick={() => navigate("/create-task")}
           className="flex gap-2 items-center px-4 py-2 bg-indigo-600 border border-indigo-500 text-white hover:bg-indigo-700 transition rounded-md"
@@ -121,11 +140,12 @@ export const TasksPage = () => {
         </button>
       </div>
 
-      {/* 🔹 Renderizado de tareas */}
+      {/* Renderizado de tareas */}
       <TaskCard
         tasks={tasks}
         deleteTask={deleteTask}
         refreshTasks={refreshTasks}
+        sortTasks={sortTaskByDate}
       />
     </div>
   );

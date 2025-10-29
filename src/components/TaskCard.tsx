@@ -12,7 +12,7 @@ import { OptionsButton } from "./buttons/OptionsButton";
 import { EditButton } from "./buttons/EditButton";
 import { DeleteButton } from "./buttons/DeleteButton";
 
-export const TaskCard = ({ tasks }: PartialTasksProps) => {
+export const TaskCard = ({ tasks, sortTasks }: PartialTasksProps) => {
   const {
     updateTask,
     deleteTask,
@@ -125,7 +125,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
 
   return (
     <ul className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-4 gap-3">
-      {tasks?.sort((a, b) =>  new Date(b.created_at as string).getSeconds() - new Date(a.created_at as string).getSeconds())
+      {sortTasks && sortTasks(tasks!)
       ?.map((task) => {
         const isDone = task.task_done;
 
@@ -139,6 +139,7 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
           >
             <h3
               contentEditable={editMode === task.task_id}
+              suppressContentEditableWarning={true}
               style={{ outline: editMode === task.task_id ? "1px solid oklch(67.3% 0.182 276.935)" : "", borderRadius: "6px", outlineOffset: "2px" }}
               className={`text-xl font-bold transition-all duration-300 w-64 p-0.5 ${
                 isDone ? "line-through text-zinc-400" : ""
@@ -147,11 +148,11 @@ export const TaskCard = ({ tasks }: PartialTasksProps) => {
               {task.title}
             </h3>
 
-            <time className="text-sm text-zinc-400 pl-0.5" contentEditable="false">
+            <time className="text-sm text-zinc-400 pl-0.5" contentEditable="false" suppressContentEditableWarning={true}>
               {formatDateAndTime(task.created_at as string)}
             </time>
             {task.task_updated ? (
-              <time contentEditable="false" className="text-sm text-zinc-400 pl-0.5">
+              <time contentEditable="false" className="text-sm text-zinc-400 pl-0.5" suppressContentEditableWarning={true}>
                 Actualizada el {formatDateAndTime(task.updated_at as string)}
               </time>
             ) : null}
