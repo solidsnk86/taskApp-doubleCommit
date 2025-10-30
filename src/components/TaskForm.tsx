@@ -176,18 +176,17 @@ export const TaskForm = () => {
             </span>
           </div>
 
-          <div className="flex items-center justify-between gap-2 mb-4 relative">
+          <div className="flex items-center gap-2 mb-4 relative" title="Fecha (opcional)">
             <label
-              className="inline-flex text-gray-700 dark:text-zinc-400"
-              htmlFor="date"
+              className="text-gray-700 dark:text-zinc-400 text-sm"
             >
-              *Fecha opcional
+              *Fecha
             </label>
             <input
               type="datetime-local"
               id="date"
               onChange={(e) => setDate(e.target.value)}
-              className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 dark:text-white"
+              className="mt-1 w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 dark:text-white"
             />
           </div>
 
