@@ -6,7 +6,7 @@ import { showDialog } from "../utils/dialog";
 export const TaskForm = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [date, setDate] = useState<Date | string>(new Date().toISOString());
+  const [date, setDate] = useState<Date | string | number>();
   const [loading, setLoading] = useState(false);
   const [loadingConext, setLoadingContext] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -63,7 +63,7 @@ export const TaskForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ title, description }),
+        body: JSON.stringify({ title, description, date: new Date(date as string).toISOString() }),
       });
 
       if (!res.ok) throw new Error("Error al crear la tarea");
@@ -75,7 +75,6 @@ export const TaskForm = () => {
       console.error("Error al guardar la tarea:", err);
     }
   };
-  console.log(date);
 
   return (
     <div
@@ -177,15 +176,15 @@ export const TaskForm = () => {
             </span>
           </div>
 
-          <div className="mb-4 relative">
+          <div className="flex items-center justify-between gap-2 mb-4 relative">
             <label
               className="block text-gray-700 dark:text-zinc-400"
               htmlFor="date"
             >
-              Fecha (opcional)
+              Fecha
             </label>
             <input
-              type="date"
+              type="datetime-local"
               id="date"
               onChange={(e) => setDate(e.target.value)}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 text-white"
