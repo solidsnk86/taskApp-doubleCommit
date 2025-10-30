@@ -32,7 +32,7 @@ interface TasksProps {
   deleteTask: (id: number) => void;
   refreshTasks: () => Promise<void>;
   editTask: (id: number) => Promise<void>;
-  sortTasks: (tasks: Task[]) => Array<Task>
+  sortTasks: (tasks: Task[]) => Array<Task>;
 }
 
 type PartialUserProps = Partial<UserProps>;

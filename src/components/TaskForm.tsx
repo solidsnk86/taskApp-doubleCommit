@@ -4,17 +4,19 @@ import { BackButton } from "./BackButton";
 import { showDialog } from "../utils/dialog";
 
 export const TaskForm = () => {
-  const [titulo, setTitulo] = useState<string>("");
-  const [descripcion, setDescripcion] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [date, setDate] = useState<Date | string>(new Date().toISOString());
   const [loading, setLoading] = useState(false);
   const [loadingConext, setLoadingContext] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const titleInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   async function getResume() {
     try {
       setLoadingContext(true);
-      if (!titulo) {
+      if (!title) {
         showDialog({
           content: (
             <div className="p-5">
@@ -23,11 +25,13 @@ export const TaskForm = () => {
             </div>
           ),
         });
+        titleInputRef!.current!.style.outline =
+          "1px solid oklch(67.3% 0.182 276.935)";
         return;
       }
 
       const res = await fetch(
-        "https://e-retro-back.vercel.app/api/ai?title=" + titulo,
+        "https://e-retro-back.vercel.app/api/ai?title=" + title,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -35,7 +39,7 @@ export const TaskForm = () => {
       );
       const data: { context: string } = await res.json();
 
-      setDescripcion(data.context.replaceAll('"', ""));
+      setDescription(data.context.replaceAll('"', ""));
     } catch (err) {
       console.error(err);
     } finally {
@@ -49,7 +53,7 @@ export const TaskForm = () => {
       textareaRef.current.style.height =
         textareaRef.current.scrollHeight + "px";
     }
-  }, [descripcion]);
+  }, [description]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -59,7 +63,7 @@ export const TaskForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ titulo, descripcion }),
+        body: JSON.stringify({ title, description }),
       });
 
       if (!res.ok) throw new Error("Error al crear la tarea");
@@ -71,6 +75,7 @@ export const TaskForm = () => {
       console.error("Error al guardar la tarea:", err);
     }
   };
+  console.log(date);
 
   return (
     <div
@@ -111,15 +116,19 @@ export const TaskForm = () => {
             <input
               type="text"
               id="title"
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
+              value={title}
+              ref={titleInputRef}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                titleInputRef.current!.style.outline = "none";
+              }}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400"
               placeholder="Ej: Actualizar landing del producto"
               required
             />
           </div>
 
-          <div className="mb-6 relative">
+          <div className=" relative">
             <label
               className="block text-gray-700 dark:text-zinc-400"
               htmlFor="description"
@@ -129,13 +138,15 @@ export const TaskForm = () => {
             <textarea
               id="description"
               ref={textareaRef}
-              value={loadingConext ? "Procesando..." : descripcion}
-              onChange={(e) => setDescripcion(e.target.value)}
+              value={loadingConext ? "Procesando..." : description}
+              onChange={(e) => setDescription(e.target.value)}
               className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 resize-none overflow-hidden"
               placeholder="Ej: Corregir el hero y optimizar el SEO de la página principal.."
               required
               rows={4}
             ></textarea>
+
+            {/* Botón de resumen con IA */}
             <span
               onClick={getResume}
               className="border border-indigo-100 dark:border-indigo-300/80 p-1 rounded absolute bottom-2 right-2 bg-indigo-400/80 btn-animation group"
@@ -164,6 +175,21 @@ export const TaskForm = () => {
                 <div className="absolute -bottom-4 right-[40%] translate-[-50%] border-t-transparent border-t-8 border-r-8 border-l-8 border-l-transparent border-b-8 border-indigo-400 rotate-45" />
               </div>
             </span>
+          </div>
+
+          <div className="mb-4 relative">
+            <label
+              className="block text-gray-700 dark:text-zinc-400"
+              htmlFor="date"
+            >
+              Fecha (opcional)
+            </label>
+            <input
+              type="date"
+              id="date"
+              onChange={(e) => setDate(e.target.value)}
+              className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 text-white"
+            />
           </div>
 
           <button

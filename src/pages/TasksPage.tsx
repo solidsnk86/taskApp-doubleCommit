@@ -11,7 +11,7 @@ export const TasksPage = () => {
   const { auth, isLoading: authLoading } = useAuth();
   const { tasks, getAllTasks, refreshTasks, deleteTask, error, isLoading } =
     useTasks();
-  const [orderBy, setOrderBy] = useState<string>();
+  const [orderBy, setOrderBy] = useState<string | "desc" | "asc" | "done">("");
 
   // Cargar tareas cuando el usuario esté autenticado
   useEffect(() => {
@@ -70,13 +70,24 @@ export const TasksPage = () => {
     );
   }
 
-  const sortTaskByDate = (tasks: Task[]) => {
+  const sortTaskDone = (tasks: Task[]) => {
+    return [...tasks].filter((task) => task.task_done === true);
+  };
+
+  const sortTaskBy = (tasks: Task[]) => {
     return [...tasks].sort((a, b) => {
       const timeA = new Date(a.created_at as string).getTime();
       const timeB = new Date(b.created_at as string).getTime();
-
-      return orderBy === "desc" ? timeB - timeA : timeA - timeB;
+      if (orderBy === "desc") return timeB - timeA;
+      return timeA - timeB;
     });
+  };
+
+  const handleSortTasks = () => {
+    if (orderBy === "done") {
+      return sortTaskDone;
+    }
+    return sortTaskBy;
   };
 
   const handleSelectOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -112,10 +123,11 @@ export const TasksPage = () => {
           Ordenar por:
           <select
             onChange={handleSelectOrder}
-            className="px-2.5 py-2 rounded-md bg-white dark:bg-zinc-200 text-zinc-800 border border-zinc-200"
+            className="px-2.5 py-2 rounded-md bg-white dark:bg-zinc-800/80 text-zinc-800 dark:text-zinc-100 border border-zinc-200"
           >
             <option value="asc">Fecha Ascendente</option>
             <option value="desc">Fecha Descendente</option>
+            <option value="done">Tareas Listas</option>
           </select>
         </label>
         <button
@@ -145,7 +157,7 @@ export const TasksPage = () => {
         tasks={tasks}
         deleteTask={deleteTask}
         refreshTasks={refreshTasks}
-        sortTasks={sortTaskByDate}
+        sortTasks={handleSortTasks()}
       />
     </div>
   );
