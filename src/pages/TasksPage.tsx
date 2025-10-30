@@ -70,11 +70,15 @@ export const TasksPage = () => {
     );
   }
 
+  const sortTaskUndone = () => {
+    return [...tasks].filter((task) => task.task_done === false);
+  }
+
   const sortTaskDone = (tasks: Task[]) => {
     return [...tasks].filter((task) => task.task_done === true);
   };
 
-  const sortTaskBy = (tasks: Task[]) => {
+  const sortTaskByDate = (tasks: Task[]) => {
     return [...tasks].sort((a, b) => {
       const timeA = new Date(a.created_at as string).getTime();
       const timeB = new Date(b.created_at as string).getTime();
@@ -84,10 +88,9 @@ export const TasksPage = () => {
   };
 
   const handleSortTasks = () => {
-    if (orderBy === "done") {
-      return sortTaskDone;
-    }
-    return sortTaskBy;
+    if (orderBy === "done") return sortTaskDone;
+    if (orderBy === "undone") return sortTaskUndone;
+    return sortTaskByDate;
   };
 
   const handleSelectOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -128,6 +131,7 @@ export const TasksPage = () => {
             <option value="asc">Fecha Ascendente</option>
             <option value="desc">Fecha Descendente</option>
             <option value="done">Tareas Listas</option>
+            <option value="undone">Tareas Pendientes</option>
           </select>
         </label>
         <button
