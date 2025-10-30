@@ -6,7 +6,7 @@ import { showDialog } from "../utils/dialog";
 export const TaskForm = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [date, setDate] = useState<Date | string | number>();
+  const [date, setDate] = useState<Date | string | number>(new Date().toISOString());
   const [loading, setLoading] = useState(false);
   const [loadingConext, setLoadingContext] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -178,16 +178,16 @@ export const TaskForm = () => {
 
           <div className="flex items-center justify-between gap-2 mb-4 relative">
             <label
-              className="block text-gray-700 dark:text-zinc-400"
+              className="inline-flex text-gray-700 dark:text-zinc-400"
               htmlFor="date"
             >
-              Fecha
+              *Fecha opcional
             </label>
             <input
               type="datetime-local"
               id="date"
               onChange={(e) => setDate(e.target.value)}
-              className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 text-white"
+              className="mt-1 block w-full p-2 rounded-md border border-gray-200 dark:border-zinc-800 focus:outline-none focus:ring focus:ring-indigo-400 dark:text-white"
             />
           </div>
 

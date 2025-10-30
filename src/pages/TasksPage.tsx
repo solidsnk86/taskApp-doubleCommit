@@ -72,7 +72,7 @@ export const TasksPage = () => {
 
   const sortTaskUndone = () => {
     return [...tasks].filter((task) => task.task_done === false);
-  }
+  };
 
   const sortTaskDone = (tasks: Task[]) => {
     return [...tasks].filter((task) => task.task_done === true);
@@ -103,21 +103,21 @@ export const TasksPage = () => {
       <h1 className="text-2xl font-bold flex items-center gap-2.5 text-zinc-800 dark:text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width={28}
-          height={28}
+          width={24}
+          height={24}
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#4f39f6"
+          stroke="#4939f6"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-list-checks-icon lucide-list-checks"
+          className="lucide lucide-list-todo-icon lucide-list-todo"
         >
           <path d="M13 5h8" />
           <path d="M13 12h8" />
           <path d="M13 19h8" />
           <path d="m3 17 2 2 4-4" />
-          <path d="m3 7 2 2 4-4" />
+          <rect x={3} y={4} width={6} height={6} rx={1} />
         </svg>
         Lista de Tareas ({tasks.length})
       </h1>
@@ -128,8 +128,8 @@ export const TasksPage = () => {
             onChange={handleSelectOrder}
             className="px-2.5 py-2 rounded-md bg-white dark:bg-zinc-800/80 text-zinc-800 dark:text-zinc-100 border border-zinc-200"
           >
-            <option value="asc">Fecha Ascendente</option>
             <option value="desc">Fecha Descendente</option>
+            <option value="asc">Fecha Ascendente</option>
             <option value="done">Tareas Listas</option>
             <option value="undone">Tareas Pendientes</option>
           </select>
