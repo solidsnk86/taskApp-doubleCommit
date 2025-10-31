@@ -29,11 +29,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const checkSession = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("https://e-retro-back.vercel.app/api/profile", {
+      const res = await fetch("https://e-retro-back.vercel.app/api/user/profile", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
-      if (res.status === 404) throw new Error("Sin sesión");
+      if (res.status === 404) throw new Error("La sesión ha expirado");
       const data = await res.json();
       
       setUser(data);
