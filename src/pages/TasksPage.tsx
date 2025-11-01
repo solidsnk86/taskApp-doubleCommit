@@ -82,8 +82,7 @@ export const TasksPage = () => {
     return [...tasks].sort((a, b) => {
       const timeA = new Date(a.created_at as string).getTime();
       const timeB = new Date(b.created_at as string).getTime();
-      if (orderBy === "desc") return timeB - timeA;
-      return timeA - timeB;
+      return orderBy === "desc" ? timeB - timeA : timeA - timeB
     });
   };
 
