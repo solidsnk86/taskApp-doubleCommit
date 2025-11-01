@@ -34,6 +34,7 @@ export const RegisterForm = () => {
 
       if (!response.ok) {
         showDialog({ content: <div className="p-5">{data.message}</div> });
+        setIsLoading(false);
         return;
       }
       setIsLoading(false)
