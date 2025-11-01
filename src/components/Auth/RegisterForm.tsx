@@ -33,8 +33,8 @@ export const RegisterForm = () => {
       const data: PartialUserProps = await response.json();
 
       if (!response.ok) {
-        showDialog({ content: <div className="p-5">{data.message}</div> });
         setIsLoading(false);
+        showDialog({ content: <div className="p-5">{data.message}</div> });
         return;
       }
       setIsLoading(false)
