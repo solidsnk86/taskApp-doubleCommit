@@ -11,7 +11,7 @@ export const TasksPage = () => {
   const { auth, isLoading: authLoading } = useAuth();
   const { tasks, getAllTasks, refreshTasks, deleteTask, error, isLoading } =
     useTasks();
-  const [orderBy, setOrderBy] = useState<string | "desc" | "asc" | "done">("");
+  const [orderBy, setOrderBy] = useState<string | "desc" | "asc" | "done">("desc");
 
   // Cargar tareas cuando el usuario esté autenticado
   useEffect(() => {
