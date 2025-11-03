@@ -9,7 +9,7 @@ export const Home = () => {
   const navigate = useNavigate();
 
   const users = [
-    {
+    { 
       id: "1",
       name: "Cecilia Olejarczyk",
       avatar: "https://avatars.githubusercontent.com/u/104603137?v=4",
@@ -71,11 +71,11 @@ export const Home = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mt-20 sm:mt-24 lg:mt-28 px-4 text-center">
-      {/* Mensaje motivacional */}
       <p className="welcome-p w-fit mx-auto text-zinc-100 italic text-[0.75rem] sm:text-sm md:text-base px-3 py-1 mb-5 bg-gradient-to-br from-[#57B4FF] via-[#8D70FE] to-[#BD34FE] border border-zinc-400/50 rounded-full">
         “Una tarea a la vez, un paso más cerca del éxito.”
       </p>
 
+      <img src="/Star-IA.gif" width={100} height={60} alt="Star gif" />
       {/* Título principal */}
       <h1 className="welcome-h1 text-3xl sm:text-4xl md:text-5xl xl:text-[3.3rem] font-extrabold bg-clip-text bg-gradient-to-t from-blue-400 to-blue-600 text-transparent leading-snug md:leading-tight">
         Bienvenido a tu Gestor de Tareas
