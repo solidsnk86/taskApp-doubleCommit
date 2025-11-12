@@ -5,6 +5,9 @@ Se trata de una **aplicación web de gestión de tareas (Task App)** construida 
 
 ---
 
+## Link del Proyecto:
+Pueden ver el proyecto en línea 👉 [aquí.](https://task-app-double-commit.vercel.app/)
+
 ## 🚀 Características principales
 
 - **Login y registro de usuarios** con cookies seguras.
